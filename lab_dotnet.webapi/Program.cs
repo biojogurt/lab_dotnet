@@ -4,8 +4,6 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.AddSerilogConfiguration();
 builder.Services.AddVersioningConfiguration();
 builder.Services.AddControllers();
@@ -15,7 +13,6 @@ var app = builder.Build();
 
 app.UseSerilogConfiguration();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwaggerConfiguration();
