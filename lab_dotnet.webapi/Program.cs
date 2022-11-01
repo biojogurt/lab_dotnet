@@ -1,13 +1,23 @@
+using lab_dotnet.repository;
 using lab_dotnet.webapi.AppConfigure.ApplicationExtensions;
 using lab_dotnet.webapi.AppConfigure.ServicesExtensions;
+using lab_dotnet.entity;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddSerilogConfiguration();
+builder.Services.AddDbContextConfiguration(new ConfigurationBuilder()
+                                           .AddJsonFile("appsettings.json", optional: false)
+                                           .Build());
 builder.Services.AddVersioningConfiguration();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerConfiguration();
+
+//temporary
+builder.Services.AddScoped<DbContext, Context>();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 var app = builder.Build();
 

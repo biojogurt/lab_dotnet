@@ -1,0 +1,77 @@
+using lab_dotnet.entity.Models.CreditHistory;
+using lab_dotnet.repository;
+using Microsoft.AspNetCore.Mvc;
+
+namespace lab_dotnet.webapi.Controllers;
+
+/// <summary>
+/// Borrowers endpoints
+/// </summary>
+[ProducesResponseType(200)]
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/[controller]")]
+[ApiController]
+public class BorrowersController : ControllerBase
+{
+    private IRepository<Borrower> _repository;
+
+    /// <summary>
+    /// Borrowers controller
+    /// </summary>
+    public BorrowersController(IRepository<Borrower> repository)
+    {
+        _repository = repository;
+    }
+
+    /// <summary>
+    /// Get borrowers
+    /// </summary>
+    [HttpGet]
+    public IActionResult GetBorrowers()
+    {
+        var result = _repository.GetAll();
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Get borrower
+    /// </summary>
+    [HttpGet]
+    public IActionResult GetBorrower(Guid id)
+    {
+        var result = _repository.GetById(id);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Save borrower
+    /// </summary>
+    /// <param name="borrower"></param>
+    [HttpPost]
+    public IActionResult SaveBorrower(Borrower borrower)
+    {
+        var result = _repository.Save(borrower);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Delete borrower
+    /// </summary>
+    /// <param name="borrower"></param>
+    [HttpDelete]
+    public IActionResult DeleteBorrower(Borrower borrower)
+    {
+        _repository.Delete(borrower);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Replace borrower
+    /// </summary>
+    /// <param name="borrower"></param>
+    [HttpPut]
+    public IActionResult ReplaceBorrower(Borrower borrower)
+    {
+        return SaveBorrower(borrower);
+    }
+}

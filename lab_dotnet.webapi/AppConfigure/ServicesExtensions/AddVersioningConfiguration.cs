@@ -1,30 +1,29 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace lab_dotnet.webapi.AppConfigure.ServicesExtensions
+namespace lab_dotnet.webapi.AppConfigure.ServicesExtensions;
+
+/// <summary>
+/// Services extensions
+/// </summary>
+public static partial class ServicesExtensions
 {
     /// <summary>
-    /// Services extensions
+    /// Configure versioning
     /// </summary>
-    public static partial class ServicesExtensions
+    /// <param name="services"></param>
+    public static void AddVersioningConfiguration(this IServiceCollection services)
     {
-        /// <summary>
-        /// Configure versioning
-        /// </summary>
-        /// <param name="services"></param>
-        public static void AddVersioningConfiguration(this IServiceCollection services)
+        services.AddVersionedApiExplorer(options =>
         {
-            services.AddVersionedApiExplorer(options =>
-            {
-                options.GroupNameFormat = "'v'VVV";
-                options.SubstituteApiVersionInUrl = true;
-            });
+            options.GroupNameFormat = "'v'VVV";
+            options.SubstituteApiVersionInUrl = true;
+        });
 
-            services.AddApiVersioning(options =>
-            {
-                options.ReportApiVersions = true;
-                options.AssumeDefaultVersionWhenUnspecified = true;
-                options.DefaultApiVersion = new ApiVersion(1, 0);
-            });
-        }
+        services.AddApiVersioning(options =>
+        {
+            options.ReportApiVersions = true;
+            options.AssumeDefaultVersionWhenUnspecified = true;
+            options.DefaultApiVersion = new ApiVersion(1, 0);
+        });
     }
 }
