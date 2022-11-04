@@ -151,11 +151,11 @@ public class Context : DbContext
         builder.Entity<Contribution>().HasOne(x => x.Borrower)
                                       .WithMany(x => x.Contributions)
                                       .HasForeignKey(x => x.BorrowerId)
-                                      .OnDelete(DeleteBehavior.Restrict);
+                                      .OnDelete(DeleteBehavior.Cascade);
         builder.Entity<Contribution>().HasOne(x => x.Contributor)
                                       .WithMany(x => x.Contributions)
                                       .HasForeignKey(x => x.ContributorId)
-                                      .OnDelete(DeleteBehavior.Restrict);
+                                      .OnDelete(DeleteBehavior.Cascade);
         #endregion Contribution
 
         #region Request
@@ -164,11 +164,11 @@ public class Context : DbContext
         builder.Entity<Request>().HasOne(x => x.Borrower)
                                  .WithMany(x => x.Requests)
                                  .HasForeignKey(x => x.BorrowerId)
-                                 .OnDelete(DeleteBehavior.Restrict);
+                                 .OnDelete(DeleteBehavior.Cascade);
         builder.Entity<Request>().HasOne(x => x.Requester)
                                  .WithMany(x => x.Requests)
                                  .HasForeignKey(x => x.RequesterId)
-                                 .OnDelete(DeleteBehavior.Restrict);
+                                 .OnDelete(DeleteBehavior.Cascade);
         #endregion Request
 
         #region AppUsers

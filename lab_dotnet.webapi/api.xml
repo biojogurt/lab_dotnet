@@ -51,5 +51,60 @@
             </summary>
             <param name="services"></param>
         </member>
+        <member name="T:lab_dotnet.webapi.Controllers.BorrowersController">
+            <summary>
+            Borrowers endpoints
+            </summary>
+        </member>
+        <member name="M:lab_dotnet.webapi.Controllers.BorrowersController.#ctor(lab_dotnet.repository.IRepository{lab_dotnet.entity.Models.CreditHistory.Borrower})">
+            <summary>
+            Borrowers controller
+            </summary>
+        </member>
+        <member name="M:lab_dotnet.webapi.Controllers.BorrowersController.GetBorrowers">
+            <summary>
+            Get borrowers
+            </summary>
+        </member>
+        <member name="M:lab_dotnet.webapi.Controllers.BorrowersController.GetBorrowerById(System.Guid)">
+            <summary>
+            Get borrower by id
+            </summary>
+        </member>
+        <member name="M:lab_dotnet.webapi.Controllers.BorrowersController.GetBorrowerByPassport(System.Int32,System.Int32,System.Guid,System.DateTime)">
+            <summary>
+            Get borrower by passport
+            </summary>
+        </member>
+        <member name="M:lab_dotnet.webapi.Controllers.BorrowersController.CreateBorrower(lab_dotnet.entity.Models.CreditHistory.Borrower)">
+            <summary>
+            Create borrower
+            </summary>
+        </member>
+        <member name="M:lab_dotnet.webapi.Controllers.BorrowersController.ReplaceBorrower(lab_dotnet.entity.Models.CreditHistory.Borrower)">
+            <summary>
+            Replace borrower
+            </summary>
+        </member>
+        <member name="M:lab_dotnet.webapi.Controllers.BorrowersController.DeleteBorrower(lab_dotnet.entity.Models.CreditHistory.Borrower)">
+            <summary>
+            Delete borrower by class instance
+            </summary>
+        </member>
+        <member name="M:lab_dotnet.webapi.Controllers.BorrowersController.DeleteBorrowerById(System.Guid)">
+            <summary>
+            Delete borrower by id
+            </summary>
+        </member>
+        <member name="M:lab_dotnet.webapi.Controllers.BorrowersController.DeleteBorrowerByPassport(System.Int32,System.Int32,System.Guid,System.DateTime)">
+            <summary>
+            Delete borrower by passport
+            </summary>
+        </member>
+        <member name="T:lab_dotnet.webapi.Program">
+            <summary>
+            Program entry
+            </summary>
+        </member>
     </members>
 </doc>

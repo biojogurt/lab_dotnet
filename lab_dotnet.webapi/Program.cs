@@ -5,44 +5,55 @@ using lab_dotnet.entity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
-var builder = WebApplication.CreateBuilder(args);
+namespace lab_dotnet.webapi;
 
-builder.AddSerilogConfiguration();
-builder.Services.AddDbContextConfiguration(new ConfigurationBuilder()
-                                           .AddJsonFile("appsettings.json", optional: false)
-                                           .Build());
-builder.Services.AddVersioningConfiguration();
-builder.Services.AddControllers();
-builder.Services.AddSwaggerConfiguration();
-
-//temporary
-builder.Services.AddScoped<DbContext, Context>();
-builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-
-var app = builder.Build();
-
-app.UseSerilogConfiguration();
-
-if (app.Environment.IsDevelopment())
+/// <summary>
+/// Program entry
+/// </summary>
+public class Program
 {
-    app.UseSwaggerConfiguration();
-}
+    private static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
 
-app.UseHttpsRedirection();
-app.UseAuthorization();
-app.MapControllers();
+        builder.AddSerilogConfiguration();
+        builder.Services.AddDbContextConfiguration(new ConfigurationBuilder()
+                                                   .AddJsonFile("appsettings.json", optional: false)
+                                                   .Build());
+        builder.Services.AddVersioningConfiguration();
+        builder.Services.AddControllers();
+        builder.Services.AddSwaggerConfiguration();
 
-try
-{
-    Log.Information("Application starting...");
-    app.Run();
-}
-catch (Exception ex)
-{
-    Log.Error("Application finished with error {error}", ex);
-}
-finally
-{
-    Log.Information("Application stopped");
-    Log.CloseAndFlush();
+        //temporary
+        builder.Services.AddScoped<DbContext, Context>();
+        builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+        var app = builder.Build();
+
+        app.UseSerilogConfiguration();
+
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwaggerConfiguration();
+        }
+
+        app.UseHttpsRedirection();
+        app.UseAuthorization();
+        app.MapControllers();
+
+        try
+        {
+            Log.Information("Application starting...");
+            app.Run();
+        }
+        catch (Exception ex)
+        {
+            Log.Error("Application finished with error {error}", ex);
+        }
+        finally
+        {
+            Log.Information("Application stopped");
+            Log.CloseAndFlush();
+        }
+    }
 }

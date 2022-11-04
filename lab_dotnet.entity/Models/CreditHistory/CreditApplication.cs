@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace lab_dotnet.entity.Models.CreditHistory;
 
 public class CreditApplication : BaseEntity
@@ -8,8 +10,12 @@ public class CreditApplication : BaseEntity
     public DateTime ApplicationDate { get; set; }
     public int CreditAmount { get; set; }
 
-    public virtual Borrower Borrower { get; set; }
-    public virtual CreditType CreditType { get; set; }
-    public virtual Creditor Creditor { get; set; }
-    public virtual Credit Credit { get; set; }
+    [JsonIgnore]
+    public virtual Borrower? Borrower { get; set; }
+    [JsonIgnore]
+    public virtual CreditType? CreditType { get; set; }
+    [JsonIgnore]
+    public virtual Creditor? Creditor { get; set; }
+    [JsonIgnore]
+    public virtual Credit? Credit { get; set; }
 }

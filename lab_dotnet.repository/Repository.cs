@@ -15,11 +15,26 @@ public class Repository<T> : IRepository<T> where T : BaseEntity
         _context = context;
         this.logger = logger;
     }
-    public void Delete(T obj)
+
+    public bool Delete(T obj)
     {
-        _context.Set<T>().Attach(obj);
-        _context.Entry(obj).State = EntityState.Deleted;
-        _context.SaveChanges();
+        try
+        {
+            _context.Set<T>().Attach(obj);
+            _context.Entry(obj).State = EntityState.Deleted;
+            _context.SaveChanges();
+            return true;
+        }
+        catch (DbUpdateException ex)
+        {
+            logger.LogError(ex.ToString());
+            return false;
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex.ToString());
+            throw ex;
+        }
     }
 
     public IQueryable<T> GetAll()
