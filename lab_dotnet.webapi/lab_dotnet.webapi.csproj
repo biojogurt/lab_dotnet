@@ -10,19 +10,19 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.10"/>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.10" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.10"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10"/>
     <PackageReference Include="Serilog.AspNetCore" Version="6.0.1"/>
     <PackageReference Include="Serilog.Enrichers.CorrelationId" Version="3.0.1"/>
     <PackageReference Include="Serilog.Expressions" Version="3.4.1"/>
     <PackageReference Include="Serilog.Sinks.Seq" Version="5.2.1"/>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+    <PackageReference Include="AutoMapper" Version="12.0.0"/>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0"/>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\lab_dotnet.entity\lab_dotnet.entity.csproj" />
-    <ProjectReference Include="..\lab_dotnet.repository\lab_dotnet.repository.csproj" />
+    <ProjectReference Include="..\lab_dotnet.Entities\lab_dotnet.Entities.csproj"/>
+    <ProjectReference Include="..\lab_dotnet.Repository\lab_dotnet.Repository.csproj"/>
+    <ProjectReference Include="..\lab_dotnet.BusinessLogic\lab_dotnet.BusinessLogic.csproj"/>
   </ItemGroup>
 </Project>

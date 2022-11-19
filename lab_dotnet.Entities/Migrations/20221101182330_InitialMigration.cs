@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace lab_dotnet.entity.Migrations
+namespace lab_dotnet.Entities.Migrations
 {
     public partial class InitialMigration : Migration
     {

@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using lab_dotnet.entity.Models.User;
-using lab_dotnet.entity.Models.CreditHistory;
+using lab_dotnet.Entities.Models.User;
+using lab_dotnet.Entities.Models.CreditHistory;
 
-namespace lab_dotnet.entity;
+namespace lab_dotnet.Entities;
 
 public class Context : DbContext
 {

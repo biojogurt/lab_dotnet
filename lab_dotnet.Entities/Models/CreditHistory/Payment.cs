@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using lab_dotnet.entity.ValidationAttributes;
+using lab_dotnet.Entities.ValidationAttributes;
 
-namespace lab_dotnet.entity.Models.CreditHistory;
+namespace lab_dotnet.Entities.Models.CreditHistory;
 
 public class Payment : BaseEntity
 {

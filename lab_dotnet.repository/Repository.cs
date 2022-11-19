@@ -1,9 +1,9 @@
-using System.Linq.Expressions;
-using lab_dotnet.entity.Models;
+using lab_dotnet.Entities.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.Linq.Expressions;
 
-namespace lab_dotnet.repository;
+namespace lab_dotnet.Repository;
 
 public class Repository<T> : IRepository<T> where T : BaseEntity
 {
@@ -33,7 +33,7 @@ public class Repository<T> : IRepository<T> where T : BaseEntity
         catch (Exception ex)
         {
             logger.LogError(ex.ToString());
-            throw ex;
+            throw;
         }
     }
 
@@ -75,7 +75,7 @@ public class Repository<T> : IRepository<T> where T : BaseEntity
         catch (Exception ex)
         {
             logger.LogError(ex.ToString());
-            throw ex;
+            throw;
         }
     }
 }

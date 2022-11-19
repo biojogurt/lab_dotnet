@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
-namespace lab_dotnet.webapi.AppConfigure.ApplicationExtensions;
+namespace lab_dotnet.WebAPI.AppConfigure.ApplicationExtensions;
 
 /// <summary>
 /// Application builder extensions

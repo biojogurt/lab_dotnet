@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/lab_dotnet.webapi/lab_dotnet.webapi.csproj",
+                "${workspaceFolder}/lab_dotnet.WebAPI/lab_dotnet.WebAPI.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/lab_dotnet.webapi/lab_dotnet.webapi.csproj",
+                "${workspaceFolder}/lab_dotnet.WebAPI/lab_dotnet.WebAPI.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/lab_dotnet.webapi/lab_dotnet.webapi.csproj"
+                "${workspaceFolder}/lab_dotnet.WebAPI/lab_dotnet.WebAPI.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

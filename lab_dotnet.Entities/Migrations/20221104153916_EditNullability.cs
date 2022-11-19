@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace lab_dotnet.entity.Migrations
+namespace lab_dotnet.Entities.Migrations
 {
     public partial class EditNullability : Migration
     {

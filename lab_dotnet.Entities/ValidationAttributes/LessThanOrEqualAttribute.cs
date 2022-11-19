@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
-namespace lab_dotnet.entity.ValidationAttributes;
+namespace lab_dotnet.Entities.ValidationAttributes;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = true)]
-sealed public class LessThanAttribute : ValidationAttribute
+sealed public class LessThanOrEqualAttribute : ValidationAttribute
 {
     /// <summary>
     /// holds date property name
@@ -14,7 +14,7 @@ sealed public class LessThanAttribute : ValidationAttribute
     /// <summary>
     /// constructor
     /// </summary>
-    public LessThanAttribute(string propertyName)
+    public LessThanOrEqualAttribute(string propertyName)
     {
         PropertyName = propertyName;
     }
@@ -46,7 +46,7 @@ sealed public class LessThanAttribute : ValidationAttribute
                 return new ValidationResult($"The field {PropertyName} must be of type DateTime.");
             }
 
-            if ((DateTime)value >= (DateTime)biggerDate)
+            if ((DateTime)value > (DateTime)biggerDate)
             {
                 return new ValidationResult($"The field {validationContext.DisplayName} must be less than field {PropertyName}.");
             }
@@ -58,7 +58,7 @@ sealed public class LessThanAttribute : ValidationAttribute
                 return new ValidationResult($"The field {PropertyName} must be of type int.");
             }
 
-            if ((int)value >= (int)biggerDate)
+            if ((int)value > (int)biggerDate)
             {
                 return new ValidationResult($"The field {validationContext.DisplayName} must be less than field {PropertyName}.");
             }

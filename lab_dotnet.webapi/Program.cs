@@ -1,11 +1,11 @@
-using lab_dotnet.repository;
-using lab_dotnet.webapi.AppConfigure.ApplicationExtensions;
-using lab_dotnet.webapi.AppConfigure.ServicesExtensions;
-using lab_dotnet.entity;
+using lab_dotnet.Entities;
+using lab_dotnet.Repository;
+using lab_dotnet.WebAPI.AppConfigure.ApplicationExtensions;
+using lab_dotnet.WebAPI.AppConfigure.ServicesExtensions;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
-namespace lab_dotnet.webapi;
+namespace lab_dotnet.WebAPI;
 
 /// <summary>
 /// Program entry

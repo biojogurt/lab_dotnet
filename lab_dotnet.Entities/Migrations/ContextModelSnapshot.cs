@@ -3,19 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using lab_dotnet.entity;
+using lab_dotnet.Entities;
 
 #nullable disable
 
-namespace lab_dotnet.entity.Migrations
+namespace lab_dotnet.Entities.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20221101182330_InitialMigration")]
-    partial class InitialMigration
+    partial class ContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,7 +22,7 @@ namespace lab_dotnet.entity.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.Borrower", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.Borrower", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -92,7 +90,7 @@ namespace lab_dotnet.entity.Migrations
                     b.HasCheckConstraint("PassportSerial", "PassportSerial >= 1000 and PassportSerial <= 9999");
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.Contribution", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.Contribution", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -122,7 +120,7 @@ namespace lab_dotnet.entity.Migrations
                     b.ToTable("Contributions", (string)null);
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.Contributor", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.Contributor", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -153,7 +151,7 @@ namespace lab_dotnet.entity.Migrations
                     b.ToTable("Contributors", (string)null);
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.Credit", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.Credit", b =>
                 {
                     b.Property<Guid>("CreditApplicationId")
                         .HasColumnType("uniqueidentifier");
@@ -186,7 +184,7 @@ namespace lab_dotnet.entity.Migrations
                     b.HasCheckConstraint("InterestRate", "InterestRate >= 0 and InterestRate <= 100");
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.CreditApplication", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.CreditApplication", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -224,7 +222,7 @@ namespace lab_dotnet.entity.Migrations
                     b.ToTable("CreditApplications", (string)null);
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.Creditor", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.Creditor", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -255,7 +253,7 @@ namespace lab_dotnet.entity.Migrations
                     b.ToTable("Creditors", (string)null);
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.CreditType", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.CreditType", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -279,7 +277,7 @@ namespace lab_dotnet.entity.Migrations
                     b.ToTable("CreditTypes", (string)null);
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.PassportIssuer", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.PassportIssuer", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -303,7 +301,7 @@ namespace lab_dotnet.entity.Migrations
                     b.ToTable("PassportIssuers", (string)null);
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.Payment", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.Payment", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -339,7 +337,7 @@ namespace lab_dotnet.entity.Migrations
                     b.HasCheckConstraint("Debt", "Debt <= RemainingAmount");
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.Request", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.Request", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -369,7 +367,7 @@ namespace lab_dotnet.entity.Migrations
                     b.ToTable("Requests", (string)null);
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.Requester", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.Requester", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -400,7 +398,7 @@ namespace lab_dotnet.entity.Migrations
                     b.ToTable("Requesters", (string)null);
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.User.AppUser", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.User.AppUser", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -439,7 +437,7 @@ namespace lab_dotnet.entity.Migrations
                     b.HasCheckConstraint("AccessLevel", "AccessLevel >= 1 and AccessLevel <= 3");
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.User.JobTitle", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.User.JobTitle", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -463,9 +461,9 @@ namespace lab_dotnet.entity.Migrations
                     b.ToTable("JobTitles", (string)null);
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.Borrower", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.Borrower", b =>
                 {
-                    b.HasOne("lab_dotnet.entity.Models.CreditHistory.PassportIssuer", "PassportIssuer")
+                    b.HasOne("lab_dotnet.Entities.Models.CreditHistory.PassportIssuer", "PassportIssuer")
                         .WithMany("Borrowers")
                         .HasForeignKey("PassportIssuerId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -474,18 +472,18 @@ namespace lab_dotnet.entity.Migrations
                     b.Navigation("PassportIssuer");
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.Contribution", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.Contribution", b =>
                 {
-                    b.HasOne("lab_dotnet.entity.Models.CreditHistory.Borrower", "Borrower")
+                    b.HasOne("lab_dotnet.Entities.Models.CreditHistory.Borrower", "Borrower")
                         .WithMany("Contributions")
                         .HasForeignKey("BorrowerId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("lab_dotnet.entity.Models.CreditHistory.Contributor", "Contributor")
+                    b.HasOne("lab_dotnet.Entities.Models.CreditHistory.Contributor", "Contributor")
                         .WithMany("Contributions")
                         .HasForeignKey("ContributorId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Borrower");
@@ -493,32 +491,32 @@ namespace lab_dotnet.entity.Migrations
                     b.Navigation("Contributor");
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.Credit", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.Credit", b =>
                 {
-                    b.HasOne("lab_dotnet.entity.Models.CreditHistory.CreditApplication", "CreditApplication")
+                    b.HasOne("lab_dotnet.Entities.Models.CreditHistory.CreditApplication", "CreditApplication")
                         .WithOne("Credit")
-                        .HasForeignKey("lab_dotnet.entity.Models.CreditHistory.Credit", "CreditApplicationId")
+                        .HasForeignKey("lab_dotnet.Entities.Models.CreditHistory.Credit", "CreditApplicationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("CreditApplication");
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.CreditApplication", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.CreditApplication", b =>
                 {
-                    b.HasOne("lab_dotnet.entity.Models.CreditHistory.Borrower", "Borrower")
+                    b.HasOne("lab_dotnet.Entities.Models.CreditHistory.Borrower", "Borrower")
                         .WithMany("CreditApplications")
                         .HasForeignKey("BorrowerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("lab_dotnet.entity.Models.CreditHistory.CreditType", "CreditType")
+                    b.HasOne("lab_dotnet.Entities.Models.CreditHistory.CreditType", "CreditType")
                         .WithMany("CreditApplications")
                         .HasForeignKey("CreditTypeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("lab_dotnet.entity.Models.CreditHistory.Creditor", "Creditor")
+                    b.HasOne("lab_dotnet.Entities.Models.CreditHistory.Creditor", "Creditor")
                         .WithMany("CreditApplications")
                         .HasForeignKey("CreditorId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -531,9 +529,9 @@ namespace lab_dotnet.entity.Migrations
                     b.Navigation("Creditor");
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.Payment", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.Payment", b =>
                 {
-                    b.HasOne("lab_dotnet.entity.Models.CreditHistory.Credit", "Credit")
+                    b.HasOne("lab_dotnet.Entities.Models.CreditHistory.Credit", "Credit")
                         .WithMany("Payments")
                         .HasForeignKey("CreditId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -542,18 +540,18 @@ namespace lab_dotnet.entity.Migrations
                     b.Navigation("Credit");
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.Request", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.Request", b =>
                 {
-                    b.HasOne("lab_dotnet.entity.Models.CreditHistory.Borrower", "Borrower")
+                    b.HasOne("lab_dotnet.Entities.Models.CreditHistory.Borrower", "Borrower")
                         .WithMany("Requests")
                         .HasForeignKey("BorrowerId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("lab_dotnet.entity.Models.CreditHistory.Requester", "Requester")
+                    b.HasOne("lab_dotnet.Entities.Models.CreditHistory.Requester", "Requester")
                         .WithMany("Requests")
                         .HasForeignKey("RequesterId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Borrower");
@@ -561,9 +559,9 @@ namespace lab_dotnet.entity.Migrations
                     b.Navigation("Requester");
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.User.AppUser", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.User.AppUser", b =>
                 {
-                    b.HasOne("lab_dotnet.entity.Models.User.JobTitle", "JobTitle")
+                    b.HasOne("lab_dotnet.Entities.Models.User.JobTitle", "JobTitle")
                         .WithMany("AppUsers")
                         .HasForeignKey("JobTitleId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -572,7 +570,7 @@ namespace lab_dotnet.entity.Migrations
                     b.Navigation("JobTitle");
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.Borrower", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.Borrower", b =>
                 {
                     b.Navigation("Contributions");
 
@@ -581,43 +579,42 @@ namespace lab_dotnet.entity.Migrations
                     b.Navigation("Requests");
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.Contributor", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.Contributor", b =>
                 {
                     b.Navigation("Contributions");
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.Credit", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.Credit", b =>
                 {
                     b.Navigation("Payments");
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.CreditApplication", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.CreditApplication", b =>
                 {
-                    b.Navigation("Credit")
-                        .IsRequired();
+                    b.Navigation("Credit");
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.Creditor", b =>
-                {
-                    b.Navigation("CreditApplications");
-                });
-
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.CreditType", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.Creditor", b =>
                 {
                     b.Navigation("CreditApplications");
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.PassportIssuer", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.CreditType", b =>
+                {
+                    b.Navigation("CreditApplications");
+                });
+
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.PassportIssuer", b =>
                 {
                     b.Navigation("Borrowers");
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.CreditHistory.Requester", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditHistory.Requester", b =>
                 {
                     b.Navigation("Requests");
                 });
 
-            modelBuilder.Entity("lab_dotnet.entity.Models.User.JobTitle", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.User.JobTitle", b =>
                 {
                     b.Navigation("AppUsers");
                 });

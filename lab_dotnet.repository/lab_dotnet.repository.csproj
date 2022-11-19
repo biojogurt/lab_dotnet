@@ -8,6 +8,6 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\lab_dotnet.entity\lab_dotnet.entity.csproj" />
+    <ProjectReference Include="..\lab_dotnet.Entities\lab_dotnet.Entities.csproj" />
   </ItemGroup>
 </Project>

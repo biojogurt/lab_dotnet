@@ -1,8 +1,8 @@
-using lab_dotnet.entity.Models.CreditHistory;
-using lab_dotnet.repository;
+using lab_dotnet.Entities.Models.CreditHistory;
+using lab_dotnet.Repository;
 using Microsoft.AspNetCore.Mvc;
 
-namespace lab_dotnet.webapi.Controllers;
+namespace lab_dotnet.WebAPI.Controllers;
 
 /// <summary>
 /// Borrowers endpoints

@@ -1,7 +1,7 @@
+using lab_dotnet.Entities.Models;
 using System.Linq.Expressions;
-using lab_dotnet.entity.Models;
 
-namespace lab_dotnet.repository;
+namespace lab_dotnet.Repository;
 
 public interface IRepository<T> where T : BaseEntity
 {

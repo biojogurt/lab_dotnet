@@ -1,6 +1,6 @@
 ﻿using Serilog;
 
-namespace lab_dotnet.webapi.AppConfigure.ApplicationExtensions;
+namespace lab_dotnet.WebAPI.AppConfigure.ApplicationExtensions;
 
 public static partial class AppExtensions
 {

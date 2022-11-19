@@ -1,11 +1,14 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# 
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_dotnet.webapi", "lab_dotnet.webapi\lab_dotnet.webapi.csproj", "{661E1110-A42A-48D9-8F9E-F37CBC8D1DFF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_dotnet.WebAPI", "lab_dotnet.WebAPI\lab_dotnet.WebAPI.csproj", "{661E1110-A42A-48D9-8F9E-F37CBC8D1DFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_dotnet.entity", "lab_dotnet.entity\lab_dotnet.entity.csproj", "{36B2A792-609C-434F-9F35-1D45C7DB34EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_dotnet.Entities", "lab_dotnet.Entities\lab_dotnet.Entities.csproj", "{36B2A792-609C-434F-9F35-1D45C7DB34EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_dotnet.repository", "lab_dotnet.repository\lab_dotnet.repository.csproj", "{408D0042-0705-4B46-83E4-E8631735064F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_dotnet.Repository", "lab_dotnet.Repository\lab_dotnet.Repository.csproj", "{408D0042-0705-4B46-83E4-E8631735064F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_dotnet.BusinessLogic", "lab_dotnet.BusinessLogic\lab_dotnet.BusinessLogic.csproj", "{FDCCF774-6130-4E9E-AA3A-A8A6412EF0CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,5 +31,9 @@ Global
 		{408D0042-0705-4B46-83E4-E8631735064F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{408D0042-0705-4B46-83E4-E8631735064F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{408D0042-0705-4B46-83E4-E8631735064F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDCCF774-6130-4E9E-AA3A-A8A6412EF0CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDCCF774-6130-4E9E-AA3A-A8A6412EF0CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDCCF774-6130-4E9E-AA3A-A8A6412EF0CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDCCF774-6130-4E9E-AA3A-A8A6412EF0CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace lab_dotnet.webapi.AppConfigure.ServicesExtensions;
+namespace lab_dotnet.WebAPI.AppConfigure.ServicesExtensions;
 
 /// <summary>
 /// Services extensions

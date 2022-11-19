@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 
-namespace lab_dotnet.entity.Models.CreditHistory;
+namespace lab_dotnet.Entities.Models.CreditHistory;
 
 public class Credit : BaseEntity
 {

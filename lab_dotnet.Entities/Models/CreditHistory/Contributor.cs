@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace lab_dotnet.entity.Models.CreditHistory;
+namespace lab_dotnet.Entities.Models.CreditHistory;
 
 public class Contributor : BaseEntity
 {

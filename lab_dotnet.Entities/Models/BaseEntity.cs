@@ -1,4 +1,4 @@
-namespace lab_dotnet.entity.Models;
+namespace lab_dotnet.Entities.Models;
 
 public abstract class BaseEntity
 {
