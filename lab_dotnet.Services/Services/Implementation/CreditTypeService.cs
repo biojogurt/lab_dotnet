@@ -9,14 +9,14 @@ namespace lab_dotnet.Services.Implementation;
 
 public class CreditTypeService : ICreditTypeService
 {
-    private readonly IPageService<CreditType, CreditTypePreviewModel> BaseService;
+    private readonly IPageService<CreditType, CreditTypePreviewModel> PageService;
     private readonly IRepository<CreditType> Repository;
     private readonly IMapper Mapper;
     private readonly ILogger<CreditTypeService> Logger;
 
-    public CreditTypeService(IPageService<CreditType, CreditTypePreviewModel> baseService, IRepository<CreditType> repository, IMapper mapper, ILogger<CreditTypeService> logger)
+    public CreditTypeService(IPageService<CreditType, CreditTypePreviewModel> pageService, IRepository<CreditType> repository, IMapper mapper, ILogger<CreditTypeService> logger)
     {
-        BaseService = baseService;
+        PageService = pageService;
         Repository = repository;
         Mapper = mapper;
         Logger = logger;
@@ -51,7 +51,7 @@ public class CreditTypeService : ICreditTypeService
     public PageModel<CreditTypePreviewModel> GetCreditTypes(int limit = 20, int offset = 0)
     {
         var creditType = Repository.GetAll();
-        return BaseService.CreatePage(creditType, limit, offset, x => x.Name);
+        return PageService.CreatePage(creditType, limit, offset, x => x.Name);
     }
 
     public CreditTypeModel UpdateCreditType(Guid id, UpdateCreditTypeModel creditType)

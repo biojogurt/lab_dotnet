@@ -9,14 +9,14 @@ namespace lab_dotnet.Services.Implementation;
 
 public class PaymentService : IPaymentService
 {
-    private readonly IPageService<Payment, PaymentPreviewModel> BaseService;
+    private readonly IPageService<Payment, PaymentPreviewModel> PageService;
     private readonly IRepository<Payment> Repository;
     private readonly IMapper Mapper;
     private readonly ILogger<PaymentService> Logger;
 
-    public PaymentService(IPageService<Payment, PaymentPreviewModel> baseService, IRepository<Payment> repository, IMapper mapper,  ILogger<PaymentService> logger)
+    public PaymentService(IPageService<Payment, PaymentPreviewModel> pageService, IRepository<Payment> repository, IMapper mapper,  ILogger<PaymentService> logger)
     {
-        BaseService = baseService;
+        PageService = pageService;
         Repository = repository;
         Mapper = mapper;
         Logger = logger;
@@ -51,13 +51,13 @@ public class PaymentService : IPaymentService
     public PageModel<PaymentPreviewModel> GetPayments(int limit = 20, int offset = 0)
     {
         var payment = Repository.GetAll();
-        return BaseService.CreatePage(payment, limit, offset, x => x.PaymentDate);
+        return PageService.CreatePage(payment, limit, offset, x => x.PaymentDate);
     }
 
     public PageModel<PaymentPreviewModel> GetPaymentsByCreditId(Guid creditId, int limit, int offset)
     {
         var payment = Repository.GetAll(x => x.CreditId == creditId);
-        return BaseService.CreatePage(payment, limit, offset, x => x.PaymentDate);
+        return PageService.CreatePage(payment, limit, offset, x => x.PaymentDate);
     }
 
     public PaymentModel UpdatePayment(Guid id, UpdatePaymentModel payment)

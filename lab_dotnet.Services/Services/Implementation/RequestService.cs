@@ -9,14 +9,14 @@ namespace lab_dotnet.Services.Implementation;
 
 public class RequestService : IRequestService
 {
-    private readonly IPageService<Request, RequestPreviewModel> BaseService;
+    private readonly IPageService<Request, RequestPreviewModel> PageService;
     private readonly IRepository<Request> Repository;
     private readonly IMapper Mapper;
     private readonly ILogger<RequestService> Logger;
 
-    public RequestService(IPageService<Request, RequestPreviewModel> baseService, IRepository<Request> repository, IMapper mapper, ILogger<RequestService> logger)
+    public RequestService(IPageService<Request, RequestPreviewModel> pageService, IRepository<Request> repository, IMapper mapper, ILogger<RequestService> logger)
     {
-        BaseService = baseService;
+        PageService = pageService;
         Repository = repository;
         Mapper = mapper;
         Logger = logger;
@@ -51,19 +51,19 @@ public class RequestService : IRequestService
     public PageModel<RequestPreviewModel> GetRequests(int limit = 20, int offset = 0)
     {
         var requests = Repository.GetAll();
-        return BaseService.CreatePage(requests, limit, offset, x => x.RequestDate);
+        return PageService.CreatePage(requests, limit, offset, x => x.RequestDate);
     }
 
     public PageModel<RequestPreviewModel> GetRequestsByBorrowerId(Guid borrowerId, int limit = 20, int offset = 0)
     {
         var requests = Repository.GetAll(x => x.BorrowerId == borrowerId);
-        return BaseService.CreatePage(requests, limit, offset, x => x.RequestDate);
+        return PageService.CreatePage(requests, limit, offset, x => x.RequestDate);
     }
 
     public PageModel<RequestPreviewModel> GetRequestsByRequesterId(Guid requesterId, int limit = 20, int offset = 0)
     {
         var requests = Repository.GetAll(x => x.RequesterId == requesterId);
-        return BaseService.CreatePage(requests, limit, offset, x => x.RequestDate);
+        return PageService.CreatePage(requests, limit, offset, x => x.RequestDate);
     }
 
     public RequestModel UpdateRequest(Guid id, UpdateRequestModel request)

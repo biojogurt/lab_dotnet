@@ -9,14 +9,14 @@ namespace lab_dotnet.Services.Implementation;
 
 public class ContributionService : IContributionService
 {
-    private readonly IPageService<Contribution, ContributionPreviewModel> BaseService;
+    private readonly IPageService<Contribution, ContributionPreviewModel> PageService;
     private readonly IRepository<Contribution> Repository;
     private readonly IMapper Mapper;
     private readonly ILogger<ContributionService> Logger;
 
-    public ContributionService(IPageService<Contribution, ContributionPreviewModel> baseService, IRepository<Contribution> repository, IMapper mapper, ILogger<ContributionService> logger)
+    public ContributionService(IPageService<Contribution, ContributionPreviewModel> pageService, IRepository<Contribution> repository, IMapper mapper, ILogger<ContributionService> logger)
     {
-        BaseService = baseService;
+        PageService = pageService;
         Repository = repository;
         Mapper = mapper;
         Logger = logger;
@@ -51,19 +51,19 @@ public class ContributionService : IContributionService
     public PageModel<ContributionPreviewModel> GetContributions(int limit = 20, int offset = 0)
     {
         var contributions = Repository.GetAll();
-        return BaseService.CreatePage(contributions, limit, offset, x => x.ContributionDate);
+        return PageService.CreatePage(contributions, limit, offset, x => x.ContributionDate);
     }
 
     public PageModel<ContributionPreviewModel> GetContributionsByBorrowerId(Guid borrowerId, int limit = 20, int offset = 0)
     {
         var contributions = Repository.GetAll(x => x.BorrowerId == borrowerId);
-        return BaseService.CreatePage(contributions, limit, offset, x => x.ContributionDate);
+        return PageService.CreatePage(contributions, limit, offset, x => x.ContributionDate);
     }
 
     public PageModel<ContributionPreviewModel> GetContributionsByContributorId(Guid contributorId, int limit = 20, int offset = 0)
     {
         var contributions = Repository.GetAll(x => x.ContributorId == contributorId);
-        return BaseService.CreatePage(contributions, limit, offset, x => x.ContributionDate);
+        return PageService.CreatePage(contributions, limit, offset, x => x.ContributionDate);
     }
 
     public ContributionModel UpdateContribution(Guid id, UpdateContributionModel contribution)

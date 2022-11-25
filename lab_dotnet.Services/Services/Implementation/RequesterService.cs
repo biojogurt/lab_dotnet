@@ -9,14 +9,14 @@ namespace lab_dotnet.Services.Implementation;
 
 public class RequesterService : IRequesterService
 {
-    private readonly IPageService<Requester, RequesterPreviewModel> BaseService;
+    private readonly IPageService<Requester, RequesterPreviewModel> PageService;
     private readonly IRepository<Requester> Repository;
     private readonly IMapper Mapper;
     private readonly ILogger<RequesterService> Logger;
 
-    public RequesterService(IPageService<Requester, RequesterPreviewModel> baseService, IRepository<Requester> repository, IMapper mapper, ILogger<RequesterService> logger)
+    public RequesterService(IPageService<Requester, RequesterPreviewModel> pageService, IRepository<Requester> repository, IMapper mapper, ILogger<RequesterService> logger)
     {
-        BaseService = baseService;
+        PageService = pageService;
         Repository = repository;
         Mapper = mapper;
         Logger = logger;
@@ -51,7 +51,7 @@ public class RequesterService : IRequesterService
     public PageModel<RequesterPreviewModel> GetRequesters(int limit = 20, int offset = 0)
     {
         var requesters = Repository.GetAll();
-        return BaseService.CreatePage(requesters, limit, offset, x => x.Name);
+        return PageService.CreatePage(requesters, limit, offset, x => x.Name);
     }
 
     public RequesterModel UpdateRequester(Guid id, UpdateRequesterModel requester)

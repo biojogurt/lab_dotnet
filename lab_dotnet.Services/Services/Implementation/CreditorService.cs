@@ -9,14 +9,14 @@ namespace lab_dotnet.Services.Implementation;
 
 public class CreditorService : ICreditorService
 {
-    private readonly IPageService<Creditor, CreditorPreviewModel> BaseService;
+    private readonly IPageService<Creditor, CreditorPreviewModel> PageService;
     private readonly IRepository<Creditor> Repository;
     private readonly IMapper Mapper;
     private readonly ILogger<CreditorService> Logger;
 
-    public CreditorService(IPageService<Creditor, CreditorPreviewModel> baseService, IRepository<Creditor> repository, IMapper mapper, ILogger<CreditorService> logger)
+    public CreditorService(IPageService<Creditor, CreditorPreviewModel> pageService, IRepository<Creditor> repository, IMapper mapper, ILogger<CreditorService> logger)
     {
-        BaseService = baseService;
+        PageService = pageService;
         Repository = repository;
         Mapper = mapper;
         Logger = logger;
@@ -51,7 +51,7 @@ public class CreditorService : ICreditorService
     public PageModel<CreditorPreviewModel> GetCreditors(int limit = 20, int offset = 0)
     {
         var creditors = Repository.GetAll();
-        return BaseService.CreatePage(creditors, limit, offset, x => x.Name);
+        return PageService.CreatePage(creditors, limit, offset, x => x.Name);
     }
 
     public CreditorModel UpdateCreditor(Guid id, UpdateCreditorModel creditor)

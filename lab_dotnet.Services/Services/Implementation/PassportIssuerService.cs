@@ -9,14 +9,14 @@ namespace lab_dotnet.Services.Implementation;
 
 public class PassportIssuerService : IPassportIssuerService
 {
-    private readonly IPageService<PassportIssuer, PassportIssuerPreviewModel> BaseService;
+    private readonly IPageService<PassportIssuer, PassportIssuerPreviewModel> PageService;
     private readonly IRepository<PassportIssuer> Repository;
     private readonly IMapper Mapper;
     private readonly ILogger<PassportIssuerService> Logger;
 
-    public PassportIssuerService(IPageService<PassportIssuer, PassportIssuerPreviewModel> baseService, IRepository<PassportIssuer> repository, IMapper mapper, ILogger<PassportIssuerService> logger)
+    public PassportIssuerService(IPageService<PassportIssuer, PassportIssuerPreviewModel> pageService, IRepository<PassportIssuer> repository, IMapper mapper, ILogger<PassportIssuerService> logger)
     {
-        BaseService = baseService;
+        PageService = pageService;
         Repository = repository;
         Mapper = mapper;
         Logger = logger;
@@ -51,7 +51,7 @@ public class PassportIssuerService : IPassportIssuerService
     public PageModel<PassportIssuerPreviewModel> GetPassportIssuers(int limit = 20, int offset = 0)
     {
         var passportIssuer = Repository.GetAll();
-        return BaseService.CreatePage(passportIssuer, limit, offset, x => x.Name);
+        return PageService.CreatePage(passportIssuer, limit, offset, x => x.Name);
     }
 
     public PassportIssuerModel UpdatePassportIssuer(Guid id, UpdatePassportIssuerModel passportIssuer)

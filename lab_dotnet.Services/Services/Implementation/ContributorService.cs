@@ -9,14 +9,14 @@ namespace lab_dotnet.Services.Implementation;
 
 public class ContributorService : IContributorService
 {
-    private readonly IPageService<Contributor, ContributorPreviewModel> BaseService;
+    private readonly IPageService<Contributor, ContributorPreviewModel> PageService;
     private readonly IRepository<Contributor> Repository;
     private readonly IMapper Mapper;
     private readonly ILogger<ContributorService> Logger;
 
-    public ContributorService(IPageService<Contributor, ContributorPreviewModel> baseService, IRepository<Contributor> repository, IMapper mapper, ILogger<ContributorService> logger)
+    public ContributorService(IPageService<Contributor, ContributorPreviewModel> pageService, IRepository<Contributor> repository, IMapper mapper, ILogger<ContributorService> logger)
     {
-        BaseService = baseService;
+        PageService = pageService;
         Repository = repository;
         Mapper = mapper;
         Logger = logger;
@@ -51,7 +51,7 @@ public class ContributorService : IContributorService
     public PageModel<ContributorPreviewModel> GetContributors(int limit = 20, int offset = 0)
     {
         var contributors = Repository.GetAll();
-        return BaseService.CreatePage(contributors, limit, offset, x => x.Name);
+        return PageService.CreatePage(contributors, limit, offset, x => x.Name);
     }
 
     public ContributorModel UpdateContributor(Guid id, UpdateContributorModel contributor)

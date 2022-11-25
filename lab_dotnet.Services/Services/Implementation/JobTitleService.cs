@@ -9,14 +9,14 @@ namespace lab_dotnet.Services.Implementation;
 
 public class JobTitleService : IJobTitleService
 {
-    private readonly IPageService<JobTitle, JobTitlePreviewModel> BaseService;
+    private readonly IPageService<JobTitle, JobTitlePreviewModel> PageService;
     private readonly IRepository<JobTitle> Repository;
     private readonly IMapper Mapper;
     private readonly ILogger<JobTitleService> Logger;
 
-    public JobTitleService(IPageService<JobTitle, JobTitlePreviewModel> baseService, IRepository<JobTitle> repository, IMapper mapper, ILogger<JobTitleService> logger)
+    public JobTitleService(IPageService<JobTitle, JobTitlePreviewModel> pageService, IRepository<JobTitle> repository, IMapper mapper, ILogger<JobTitleService> logger)
     {
-        BaseService = baseService;
+        PageService = pageService;
         Repository = repository;
         Mapper = mapper;
         Logger = logger;
@@ -51,7 +51,7 @@ public class JobTitleService : IJobTitleService
     public PageModel<JobTitlePreviewModel> GetJobTitles(int limit = 20, int offset = 0)
     {
         var jobTitle = Repository.GetAll();
-        return BaseService.CreatePage(jobTitle, limit, offset, x => x.Name);
+        return PageService.CreatePage(jobTitle, limit, offset, x => x.Name);
     }
 
     public JobTitleModel UpdateJobTitle(Guid id, UpdateJobTitleModel jobTitle)
