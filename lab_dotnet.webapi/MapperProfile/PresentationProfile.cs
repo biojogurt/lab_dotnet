@@ -10,117 +10,117 @@ public class PresentationProfile : Profile
     {
         #region Paging
 
-        CreateMap(typeof(PageModel<>), typeof(PageResponse<>));
+        CreateMap(typeof(PageModel<>), typeof(PageResponse<>)).ReverseMap();
 
         #endregion Paging
 
         #region Base
 
-        CreateMap<BaseModel, BaseResponse>();
+        CreateMap<BaseModel, BaseResponse>().ReverseMap();
 
         #endregion Base
 
         #region AppUser
 
-        CreateMap<AppUserModel, AppUserResponse>();
-        CreateMap<UpdateAppUserRequest, UpdateAppUserModel>();
-        CreateMap<AppUserPreviewModel, AppUserPreviewResponse>();
+        CreateMap<AppUserModel, AppUserResponse>().ReverseMap();
+        CreateMap<UpdateAppUserRequest, UpdateAppUserModel>().ReverseMap();
+        CreateMap<AppUserPreviewModel, AppUserPreviewResponse>().ReverseMap();
 
         #endregion AppUser
 
         #region Borrower
 
-        CreateMap<BorrowerModel, BorrowerResponse>();
-        CreateMap<UpdateBorrowerRequest, UpdateBorrowerModel>();
-        CreateMap<BorrowerPreviewModel, BorrowerPreviewResponse>();
+        CreateMap<BorrowerModel, BorrowerResponse>().ReverseMap();
+        CreateMap<UpdateBorrowerRequest, UpdateBorrowerModel>().ReverseMap();
+        CreateMap<BorrowerPreviewModel, BorrowerPreviewResponse>().ReverseMap();
 
         #endregion Borrower
 
         #region Contribution
 
-        CreateMap<ContributionModel, ContributionResponse>();
-        CreateMap<UpdateContributionRequest, UpdateContributionModel>();
-        CreateMap<ContributionPreviewModel, ContributionPreviewResponse>();
+        CreateMap<ContributionModel, ContributionResponse>().ReverseMap();
+        CreateMap<UpdateContributionRequest, UpdateContributionModel>().ReverseMap();
+        CreateMap<ContributionPreviewModel, ContributionPreviewResponse>().ReverseMap();
 
         #endregion Contribution
 
         #region Contributor
 
-        CreateMap<ContributorModel, ContributorResponse>();
-        CreateMap<UpdateContributorRequest, UpdateContributorModel>();
-        CreateMap<ContributorPreviewModel, ContributorPreviewResponse>();
+        CreateMap<ContributorModel, ContributorResponse>().ReverseMap();
+        CreateMap<UpdateContributorRequest, UpdateContributorModel>().ReverseMap();
+        CreateMap<ContributorPreviewModel, ContributorPreviewResponse>().ReverseMap();
 
         #endregion Contributor
 
         #region Credit
 
-        CreateMap<CreditModel, CreditResponse>();
-        CreateMap<UpdateCreditRequest, UpdateCreditModel>();
-        CreateMap<CreditPreviewModel, CreditPreviewResponse>();
+        CreateMap<CreditModel, CreditResponse>().ReverseMap();
+        CreateMap<UpdateCreditRequest, UpdateCreditModel>().ReverseMap();
+        CreateMap<CreditPreviewModel, CreditPreviewResponse>().ReverseMap();
 
         #endregion Credit
 
         #region CreditApplication
 
-        CreateMap<CreditApplicationModel, CreditApplicationResponse>();
-        CreateMap<UpdateCreditApplicationRequest, UpdateCreditApplicationModel>();
-        CreateMap<CreditApplicationPreviewModel, CreditApplicationPreviewResponse>();
+        CreateMap<CreditApplicationModel, CreditApplicationResponse>().ReverseMap();
+        CreateMap<UpdateCreditApplicationRequest, UpdateCreditApplicationModel>().ReverseMap();
+        CreateMap<CreditApplicationPreviewModel, CreditApplicationPreviewResponse>().ReverseMap();
 
         #endregion CreditApplication
 
         #region Creditor
 
-        CreateMap<CreditorModel, CreditorResponse>();
-        CreateMap<UpdateCreditorRequest, UpdateCreditorModel>();
-        CreateMap<CreditorPreviewModel, CreditorPreviewResponse>();
+        CreateMap<CreditorModel, CreditorResponse>().ReverseMap();
+        CreateMap<UpdateCreditorRequest, UpdateCreditorModel>().ReverseMap();
+        CreateMap<CreditorPreviewModel, CreditorPreviewResponse>().ReverseMap();
 
         #endregion Creditor
 
         #region CreditType
 
-        CreateMap<CreditTypeModel, CreditTypeResponse>();
-        CreateMap<UpdateCreditTypeRequest, UpdateCreditTypeModel>();
-        CreateMap<CreditTypePreviewModel, CreditTypePreviewResponse>();
+        CreateMap<CreditTypeModel, CreditTypeResponse>().ReverseMap();
+        CreateMap<UpdateCreditTypeRequest, UpdateCreditTypeModel>().ReverseMap();
+        CreateMap<CreditTypePreviewModel, CreditTypePreviewResponse>().ReverseMap();
 
         #endregion CreditType
 
         #region JobTitle
 
-        CreateMap<JobTitleModel, JobTitleResponse>();
-        CreateMap<UpdateJobTitleRequest, UpdateJobTitleModel>();
-        CreateMap<JobTitlePreviewModel, JobTitlePreviewResponse>();
+        CreateMap<JobTitleModel, JobTitleResponse>().ReverseMap();
+        CreateMap<UpdateJobTitleRequest, UpdateJobTitleModel>().ReverseMap();
+        CreateMap<JobTitlePreviewModel, JobTitlePreviewResponse>().ReverseMap();
 
         #endregion JobTitle
 
         #region PassportIssuer
 
-        CreateMap<PassportIssuerModel, PassportIssuerResponse>();
-        CreateMap<UpdatePassportIssuerRequest, UpdatePassportIssuerModel>();
-        CreateMap<PassportIssuerPreviewModel, PassportIssuerPreviewResponse>();
+        CreateMap<PassportIssuerModel, PassportIssuerResponse>().ReverseMap();
+        CreateMap<UpdatePassportIssuerRequest, UpdatePassportIssuerModel>().ReverseMap();
+        CreateMap<PassportIssuerPreviewModel, PassportIssuerPreviewResponse>().ReverseMap();
 
         #endregion PassportIssuer
 
         #region Payment
 
-        CreateMap<PaymentModel, PaymentResponse>();
-        CreateMap<UpdatePaymentRequest, UpdatePaymentModel>();
-        CreateMap<PaymentPreviewModel, PaymentPreviewResponse>();
+        CreateMap<PaymentModel, PaymentResponse>().ReverseMap();
+        CreateMap<UpdatePaymentRequest, UpdatePaymentModel>().ReverseMap();
+        CreateMap<PaymentPreviewModel, PaymentPreviewResponse>().ReverseMap();
 
         #endregion Payment
 
         #region Request
 
-        CreateMap<RequestModel, RequestResponse>();
-        CreateMap<UpdateRequestRequest, UpdateRequestModel>();
-        CreateMap<RequestPreviewModel, RequestPreviewResponse>();
+        CreateMap<RequestModel, RequestResponse>().ReverseMap();
+        CreateMap<UpdateRequestRequest, UpdateRequestModel>().ReverseMap();
+        CreateMap<RequestPreviewModel, RequestPreviewResponse>().ReverseMap();
 
         #endregion Request
 
         #region Requester
 
-        CreateMap<RequesterModel, RequesterResponse>();
-        CreateMap<UpdateRequesterRequest, UpdateRequesterModel>();
-        CreateMap<RequesterPreviewModel, RequesterPreviewResponse>();
+        CreateMap<RequesterModel, RequesterResponse>().ReverseMap();
+        CreateMap<UpdateRequesterRequest, UpdateRequesterModel>().ReverseMap();
+        CreateMap<RequesterPreviewModel, RequesterPreviewResponse>().ReverseMap();
 
         #endregion Requester
     }

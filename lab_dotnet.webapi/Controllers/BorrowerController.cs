@@ -1,5 +1,4 @@
 using AutoMapper;
-using lab_dotnet.Entities.Models;
 using lab_dotnet.Services.Abstract;
 using lab_dotnet.Services.Models;
 using lab_dotnet.WebAPI.Models;
@@ -29,26 +28,34 @@ public class BorrowerController : ControllerBase
     }
 
     /// <summary>
-    /// Get borrowers
+    /// Delete borrower
     /// </summary>
-    [HttpGet]
-    public IActionResult GetBorrowers([FromQuery] int limit = 20, [FromQuery] int offset = 0)
+    [HttpDelete]
+    [Route("{id:Guid}")]
+    public IActionResult DeleteBorrower([FromRoute] Guid id)
     {
-        var pageModel = Service.GetBorrowers(limit, offset);
-        var pageResponse = Mapper.Map<PageResponse<BorrowerResponse>>(pageModel);
-        return Ok(pageResponse);
+        try
+        {
+            Service.DeleteBorrower(id);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.ToString());
+        }
     }
 
     /// <summary>
     /// Get borrower by id
     /// </summary>
     [HttpGet]
-    [Route("{id}")]
+    [Route("{id:Guid}")]
     public IActionResult GetBorrowerById([FromRoute] Guid id)
     {
         try
         {
-            var borrowerResponse = Mapper.Map<BorrowerResponse>(Service.GetBorrowerById(id));
+            var borrowerModel = Service.GetBorrowerById(id);
+            var borrowerResponse = Mapper.Map<BorrowerResponse>(borrowerModel);
             return Ok(borrowerResponse);
         }
         catch (Exception ex)
@@ -60,7 +67,8 @@ public class BorrowerController : ControllerBase
     /// <summary>
     /// Get borrower by passport
     /// </summary>
-    [HttpGet("passport")]
+    [HttpGet]
+    [Route("GetByPassport")]
     public IActionResult GetBorrowerByPassport([FromBody] PassportRequest passport)
     {
         try
@@ -77,10 +85,21 @@ public class BorrowerController : ControllerBase
     }
 
     /// <summary>
+    /// Get borrowers
+    /// </summary>
+    [HttpGet]
+    public IActionResult GetBorrowers([FromQuery] int limit = 20, [FromQuery] int offset = 0)
+    {
+        var pageModel = Service.GetBorrowers(limit, offset);
+        var pageResponse = Mapper.Map<PageResponse<BorrowerResponse>>(pageModel);
+        return Ok(pageResponse);
+    }
+
+    /// <summary>
     /// Update borrower
     /// </summary>
     [HttpPut]
-    [Route("{id}")]
+    [Route("{id:Guid}")]
     public IActionResult UpdateBorrower([FromRoute] Guid id, [FromBody] UpdateBorrowerRequest borrowerRequest)
     {
         var validationResult = borrowerRequest.Validate();
@@ -90,62 +109,15 @@ public class BorrowerController : ControllerBase
             return BadRequest(validationResult.Errors);
         }
 
-        var borrowerModel = Mapper.Map<UpdateBorrowerModel>(borrowerRequest);
-
-        if (borrowerModel == null)
+        try
         {
-            return BadRequest("No such borrower");
+            var borrowerModel = Mapper.Map<UpdateBorrowerModel>(borrowerRequest);
+            var borrowerResult = Service.UpdateBorrower(id, borrowerModel);
+            return Ok(borrowerResult);
         }
-
-        var borrowerResult = Service.UpdateBorrower(id, borrowerModel);
-        return Ok(borrowerResult);
-    }
-
-    /// <summary>
-    /// Delete borrower by class instance
-    /// </summary>
-    [HttpDelete]
-    public IActionResult DeleteBorrower(Borrower borrower)
-    {
-        var result = _repository.Delete(borrower);
-        return result ? Ok() : NotFound();
-    }
-
-    /// <summary>
-    /// Delete borrower by id
-    /// </summary>
-    [HttpDelete("id")]
-    public IActionResult DeleteBorrowerById(Guid id)
-    {
-        var borrower = _repository.GetById(id);
-
-        if (borrower != null)
+        catch (Exception ex)
         {
-            _repository.Delete(borrower);
-            return Ok();
+            return BadRequest(ex.ToString());
         }
-
-        return NotFound();
-    }
-
-    /// <summary>
-    /// Delete borrower by passport
-    /// </summary>
-    [HttpDelete("passport")]
-    public IActionResult DeleteBorrowerByPassport(int passportSerial, int passportNumber, Guid passportIssuerId, DateTime passportIssueDate)
-    {
-        var borrower = _repository.GetAll(x => x.PassportSerial == passportSerial &&
-                                             x.PassportNumber == passportNumber &&
-                                             x.PassportIssuerId == passportIssuerId &&
-                                             x.PassportIssueDate == passportIssueDate)
-                                .FirstOrDefault();
-
-        if (borrower != null)
-        {
-            _repository.Delete(borrower);
-            return Ok();
-        }
-
-        return NotFound();
     }
 }

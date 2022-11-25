@@ -95,6 +95,11 @@ public class CreditService : ICreditService
             existingCredit.InterestRate = (int)credit.InterestRate;
         }
 
+        if (credit.BorrowerId != null)
+        {
+            existingCredit.CreditApplication.BorrowerId = (Guid)credit.BorrowerId;
+        }
+
         existingCredit = Repository.Save(existingCredit);
         return Mapper.Map<CreditModel>(existingCredit);
     }

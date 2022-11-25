@@ -12,6 +12,7 @@ public class UpdateCreditRequest
     public DateTime? StartDate { get; set; }
     public DateTime? EndDate { get; set; }
     public int? InterestRate { get; set; }
+    public Guid? BorrowerId { get; set; }
 
     #endregion Model
 

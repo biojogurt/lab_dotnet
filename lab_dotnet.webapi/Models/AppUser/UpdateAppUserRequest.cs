@@ -8,9 +8,8 @@ public class UpdateAppUserRequest
     #region Model
 
     public string? FullName { get; set; }
-    public Guid? JobTitleId { get; set; }
-    public int? AccessLevel { get; set; }
     public string? Email { get; set; }
+    public string? PasswordHash { get; set; }
 
     #endregion Model
 
@@ -20,9 +19,6 @@ public class UpdateAppUserRequest
     {
         public Validator()
         {
-            RuleFor(x => x.AccessLevel)
-                    .InclusiveBetween(1, 3)
-                    .WithMessage("Must be between 1 and 3 inclusively");
             RuleFor(x => x.Email)
                     .EmailAddress()
                     .WithMessage("Must be email");
