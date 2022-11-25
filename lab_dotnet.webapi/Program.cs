@@ -1,8 +1,7 @@
-using lab_dotnet.Entities;
+using lab_dotnet.Services;
 using lab_dotnet.Repository;
-using lab_dotnet.WebAPI.AppConfigure.ApplicationExtensions;
-using lab_dotnet.WebAPI.AppConfigure.ServicesExtensions;
-using Microsoft.EntityFrameworkCore;
+using lab_dotnet.WebAPI.AppConfiguration.ApplicationExtensions;
+using lab_dotnet.WebAPI.AppConfiguration.ServicesExtensions;
 using Serilog;
 
 namespace lab_dotnet.WebAPI;
@@ -21,12 +20,11 @@ public class Program
                                                    .AddJsonFile("appsettings.json", optional: false)
                                                    .Build());
         builder.Services.AddVersioningConfiguration();
+        builder.Services.AddMapperConfiguration();
         builder.Services.AddControllers();
         builder.Services.AddSwaggerConfiguration();
-
-        //temporary
-        builder.Services.AddScoped<DbContext, Context>();
-        builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+        builder.Services.AddRepositoryConfiguration();
+        builder.Services.AddServicesConfiguration();
 
         var app = builder.Build();
 

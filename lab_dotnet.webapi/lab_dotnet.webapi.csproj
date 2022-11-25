@@ -5,8 +5,11 @@
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile>api.xml</DocumentationFile>
+    <NoWarn>8618,1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.2.2"/>
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.2.2"/>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.10"/>
@@ -23,6 +26,6 @@
   <ItemGroup>
     <ProjectReference Include="..\lab_dotnet.Entities\lab_dotnet.Entities.csproj"/>
     <ProjectReference Include="..\lab_dotnet.Repository\lab_dotnet.Repository.csproj"/>
-    <ProjectReference Include="..\lab_dotnet.BusinessLogic\lab_dotnet.BusinessLogic.csproj"/>
+    <ProjectReference Include="..\lab_dotnet.Services\lab_dotnet.Services.csproj"/>
   </ItemGroup>
 </Project>

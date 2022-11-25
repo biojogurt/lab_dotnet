@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using lab_dotnet.Entities.Models.User;
-using lab_dotnet.Entities.Models.CreditHistory;
+using lab_dotnet.Entities.Models;
 
 namespace lab_dotnet.Entities;
 

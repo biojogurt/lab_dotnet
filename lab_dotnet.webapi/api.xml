@@ -56,7 +56,7 @@
             Borrowers endpoints
             </summary>
         </member>
-        <member name="M:lab_dotnet.WebAPI.Controllers.BorrowersController.#ctor(lab_dotnet.Repository.IRepository{lab_dotnet.Entities.Models.CreditHistory.Borrower})">
+        <member name="M:lab_dotnet.WebAPI.Controllers.BorrowersController.#ctor(lab_dotnet.Repository.IRepository{lab_dotnet.Entities.Models.Borrower})">
             <summary>
             Borrowers controller
             </summary>
@@ -76,17 +76,17 @@
             Get borrower by passport
             </summary>
         </member>
-        <member name="M:lab_dotnet.WebAPI.Controllers.BorrowersController.CreateBorrower(lab_dotnet.Entities.Models.CreditHistory.Borrower)">
+        <member name="M:lab_dotnet.WebAPI.Controllers.BorrowersController.CreateBorrower(lab_dotnet.Entities.Models.Borrower)">
             <summary>
             Create borrower
             </summary>
         </member>
-        <member name="M:lab_dotnet.WebAPI.Controllers.BorrowersController.ReplaceBorrower(lab_dotnet.Entities.Models.CreditHistory.Borrower)">
+        <member name="M:lab_dotnet.WebAPI.Controllers.BorrowersController.ReplaceBorrower(lab_dotnet.Entities.Models.Borrower)">
             <summary>
             Replace borrower
             </summary>
         </member>
-        <member name="M:lab_dotnet.WebAPI.Controllers.BorrowersController.DeleteBorrower(lab_dotnet.Entities.Models.CreditHistory.Borrower)">
+        <member name="M:lab_dotnet.WebAPI.Controllers.BorrowersController.DeleteBorrower(lab_dotnet.Entities.Models.Borrower)">
             <summary>
             Delete borrower by class instance
             </summary>

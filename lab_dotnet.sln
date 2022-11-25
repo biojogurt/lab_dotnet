@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_dotnet.Entities", "lab_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_dotnet.Repository", "lab_dotnet.Repository\lab_dotnet.Repository.csproj", "{408D0042-0705-4B46-83E4-E8631735064F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_dotnet.BusinessLogic", "lab_dotnet.BusinessLogic\lab_dotnet.BusinessLogic.csproj", "{FDCCF774-6130-4E9E-AA3A-A8A6412EF0CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_dotnet.Services", "lab_dotnet.Services\lab_dotnet.Services.csproj", "{FDCCF774-6130-4E9E-AA3A-A8A6412EF0CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
