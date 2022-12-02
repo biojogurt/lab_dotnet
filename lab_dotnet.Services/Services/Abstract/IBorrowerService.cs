@@ -4,6 +4,8 @@ namespace lab_dotnet.Services.Abstract;
 
 public interface IBorrowerService
 {
+    BorrowerModel CreateBorrower(BorrowerModel borrowerModel);
+
     BorrowerModel GetBorrowerById(Guid id);
 
     BorrowerModel GetBorrowerByPassport(PassportModel passport);

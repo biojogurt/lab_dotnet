@@ -28,6 +28,24 @@ public class PaymentController : ControllerBase
     }
 
     /// <summary>
+    /// Create payment
+    /// </summary>
+    [HttpPost]
+    public IActionResult CreatePayment([FromBody] PaymentRequest payment)
+    {
+        try
+        {
+            var paymentModel = Service.CreatePayment(Mapper.Map<PaymentModel>(payment));
+            var paymentResponce = Mapper.Map<PaymentResponse>(paymentModel);
+            return Ok(paymentResponce);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.ToString());
+        }
+    }
+
+    /// <summary>
     /// Delete payment
     /// </summary>
     [HttpDelete]

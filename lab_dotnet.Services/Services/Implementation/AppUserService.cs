@@ -14,7 +14,10 @@ public class AppUserService : IAppUserService
     private readonly IMapper Mapper;
     private readonly ILogger<AppUserService> Logger;
 
-    public AppUserService(IPageService<AppUser, AppUserPreviewModel> pageService, IRepository<AppUser> repository, IMapper mapper, ILogger<AppUserService> logger)
+    public AppUserService(IPageService<AppUser, AppUserPreviewModel> pageService,
+                          IRepository<AppUser> repository,
+                          IMapper mapper,
+                          ILogger<AppUserService> logger)
     {
         PageService = pageService;
         Repository = repository;

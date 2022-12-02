@@ -28,6 +28,24 @@ public class ContributorController : ControllerBase
     }
 
     /// <summary>
+    /// Create contributor
+    /// </summary>
+    [HttpPost]
+    public IActionResult CreateContributor([FromBody] ContributorRequest contributor)
+    {
+        try
+        {
+            var contributorModel = Service.CreateContributor(Mapper.Map<ContributorModel>(contributor));
+            var contributorResponce = Mapper.Map<ContributorResponse>(contributorModel);
+            return Ok(contributorResponce);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.ToString());
+        }
+    }
+
+    /// <summary>
     /// Delete contributor
     /// </summary>
     [HttpDelete]

@@ -10,21 +10,64 @@ namespace lab_dotnet.Services.Implementation;
 public class CreditApplicationService : ICreditApplicationService
 {
     private readonly IPageService<CreditApplication, CreditApplicationPreviewModel> PageService;
-    private readonly IRepository<CreditApplication> Repository;
+    private readonly IRepository<CreditApplication> RepositoryCreditApplication;
+    private readonly IRepository<Borrower> RepositoryBorrower;
+    private readonly IRepository<CreditType> RepositoryCreditType;
+    private readonly IRepository<Creditor> RepositoryCreditor;
     private readonly IMapper Mapper;
     private readonly ILogger<CreditApplicationService> Logger;
 
-    public CreditApplicationService(IPageService<CreditApplication, CreditApplicationPreviewModel> pageService, IRepository<CreditApplication> repository, IMapper mapper, ILogger<CreditApplicationService> logger)
+    public CreditApplicationService(IPageService<CreditApplication, CreditApplicationPreviewModel> pageService,
+                                    IRepository<CreditApplication> repositoryCreditApplication,
+                                    IRepository<Borrower> repositoryBorrower,
+                                    IRepository<CreditType> repositoryCreditType,
+                                    IRepository<Creditor> repositoryCreditor,
+                                    IMapper mapper,
+                                    ILogger<CreditApplicationService> logger)
     {
         PageService = pageService;
-        Repository = repository;
+        RepositoryCreditApplication = repositoryCreditApplication;
+        RepositoryBorrower = repositoryBorrower;
+        RepositoryCreditType = repositoryCreditType;
+        RepositoryCreditor = repositoryCreditor;
         Mapper = mapper;
         Logger = logger;
     }
 
+    public CreditApplicationModel CreateCreditApplication(CreditApplicationModel creditApplicationModel)
+    {
+        var existingBorrower = RepositoryBorrower.GetById(creditApplicationModel.BorrowerId);
+        if (existingBorrower == null)
+        {
+            Exception ex = new Exception("No such borrower");
+            Logger.LogError(ex.ToString());
+            throw ex;
+        }
+
+        var existingCreditType = RepositoryCreditType.GetById(creditApplicationModel.CreditTypeId);
+        if (existingCreditType == null)
+        {
+            Exception ex = new Exception("No such credit type");
+            Logger.LogError(ex.ToString());
+            throw ex;
+        }
+
+        var existingCreditor = RepositoryCreditor.GetById(creditApplicationModel.CreditorId);
+        if (existingCreditor == null)
+        {
+            Exception ex = new Exception("No such creditor");
+            Logger.LogError(ex.ToString());
+            throw ex;
+        }
+
+        CreditApplication creditapplication = Mapper.Map<CreditApplication>(creditApplicationModel);
+        RepositoryCreditApplication.Save(creditapplication);
+        return Mapper.Map<CreditApplicationModel>(creditapplication);
+    }
+
     public void DeleteCreditApplication(Guid id)
     {
-        var application = Repository.GetById(id);
+        var application = RepositoryCreditApplication.GetById(id);
         if (application == null)
         {
             Exception ex = new Exception("Credit application not found");
@@ -32,12 +75,12 @@ public class CreditApplicationService : ICreditApplicationService
             throw ex;
         }
 
-        Repository.Delete(application);
+        RepositoryCreditApplication.Delete(application);
     }
 
     public CreditApplicationModel GetCreditApplication(Guid id)
     {
-        var application = Repository.GetById(id);
+        var application = RepositoryCreditApplication.GetById(id);
         if (application == null)
         {
             Exception ex = new Exception("Credit application not found");
@@ -50,31 +93,31 @@ public class CreditApplicationService : ICreditApplicationService
 
     public PageModel<CreditApplicationPreviewModel> GetCreditApplications(int limit = 20, int offset = 0)
     {
-        var applications = Repository.GetAll();
+        var applications = RepositoryCreditApplication.GetAll();
         return PageService.CreatePage(applications, limit, offset, x => x.ApplicationDate);
     }
 
     public PageModel<CreditApplicationPreviewModel> GetCreditApplicationsByBorrowerId(Guid borrowerId, int limit = 20, int offset = 0)
     {
-        var applications = Repository.GetAll(x => x.BorrowerId == borrowerId);
+        var applications = RepositoryCreditApplication.GetAll(x => x.BorrowerId == borrowerId);
         return PageService.CreatePage(applications, limit, offset, x => x.ApplicationDate);
     }
 
     public PageModel<CreditApplicationPreviewModel> GetCreditApplicationsByCreditorId(Guid creditorId, int limit = 20, int offset = 0)
     {
-        var applications = Repository.GetAll(x => x.CreditorId == creditorId);
+        var applications = RepositoryCreditApplication.GetAll(x => x.CreditorId == creditorId);
         return PageService.CreatePage(applications, limit, offset, x => x.ApplicationDate);
     }
 
     public PageModel<CreditApplicationPreviewModel> GetCreditApplicationsByCreditTypeId(Guid creditTypeId, int limit = 20, int offset = 0)
     {
-        var applications = Repository.GetAll(x => x.CreditTypeId == creditTypeId);
+        var applications = RepositoryCreditApplication.GetAll(x => x.CreditTypeId == creditTypeId);
         return PageService.CreatePage(applications, limit, offset, x => x.ApplicationDate);
     }
 
     public CreditApplicationModel UpdateCreditApplication(Guid id, UpdateCreditApplicationModel creditApplication)
     {
-        var existingApplication = Repository.GetById(id);
+        var existingApplication = RepositoryCreditApplication.GetById(id);
         if (existingApplication == null)
         {
             Exception ex = new Exception("Credit application not found");
@@ -107,7 +150,7 @@ public class CreditApplicationService : ICreditApplicationService
             existingApplication.CreditAmount = (int)creditApplication.CreditAmount;
         }
 
-        existingApplication = Repository.Save(existingApplication);
+        existingApplication = RepositoryCreditApplication.Save(existingApplication);
         return Mapper.Map<CreditApplicationModel>(existingApplication);
     }
 }

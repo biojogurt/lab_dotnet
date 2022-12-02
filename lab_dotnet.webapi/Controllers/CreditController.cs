@@ -28,6 +28,24 @@ public class CreditController : ControllerBase
     }
 
     /// <summary>
+    /// Create credit
+    /// </summary>
+    [HttpPost]
+    public IActionResult CreateCredit([FromBody] CreditRequest credit)
+    {
+        try
+        {
+            var creditModel = Service.CreateCredit(Mapper.Map<CreditModel>(credit));
+            var creditResponce = Mapper.Map<CreditResponse>(creditModel);
+            return Ok(creditResponce);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.ToString());
+        }
+    }
+
+    /// <summary>
     /// Delete credit
     /// </summary>
     [HttpDelete]

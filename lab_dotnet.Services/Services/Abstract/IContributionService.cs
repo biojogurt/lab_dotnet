@@ -4,6 +4,8 @@ namespace lab_dotnet.Services.Abstract;
 
 public interface IContributionService
 {
+    ContributionModel CreateContribution(ContributionModel contributionModel);
+
     ContributionModel GetContribution(Guid id);
 
     ContributionModel UpdateContribution(Guid id, UpdateContributionModel contribution);

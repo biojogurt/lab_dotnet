@@ -4,6 +4,8 @@ namespace lab_dotnet.Services.Abstract;
 
 public interface IPaymentService
 {
+    PaymentModel CreatePayment(PaymentModel paymentModel);
+
     PaymentModel GetPayment(Guid id);
 
     PaymentModel UpdatePayment(Guid id, UpdatePaymentModel payment);

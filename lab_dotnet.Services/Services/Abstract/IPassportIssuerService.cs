@@ -4,6 +4,8 @@ namespace lab_dotnet.Services.Abstract;
 
 public interface IPassportIssuerService
 {
+    PassportIssuerModel CreatePassportIssuer(PassportIssuerModel passportIssuerModel);
+
     PassportIssuerModel GetPassportIssuer(Guid id);
 
     PassportIssuerModel UpdatePassportIssuer(Guid id, UpdatePassportIssuerModel passportIssuer);

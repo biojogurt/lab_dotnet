@@ -14,12 +14,22 @@ public class ContributorService : IContributorService
     private readonly IMapper Mapper;
     private readonly ILogger<ContributorService> Logger;
 
-    public ContributorService(IPageService<Contributor, ContributorPreviewModel> pageService, IRepository<Contributor> repository, IMapper mapper, ILogger<ContributorService> logger)
+    public ContributorService(IPageService<Contributor, ContributorPreviewModel> pageService,
+                              IRepository<Contributor> repository,
+                              IMapper mapper,
+                              ILogger<ContributorService> logger)
     {
         PageService = pageService;
         Repository = repository;
         Mapper = mapper;
         Logger = logger;
+    }
+
+    public ContributorModel CreateContributor(ContributorModel contributorModel)
+    {
+        Contributor contributor = Mapper.Map<Contributor>(contributorModel);
+        Repository.Save(contributor);
+        return Mapper.Map<ContributorModel>(contributor);
     }
 
     public void DeleteContributor(Guid id)

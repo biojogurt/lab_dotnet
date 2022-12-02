@@ -10,21 +10,53 @@ namespace lab_dotnet.Services.Implementation;
 public class RequestService : IRequestService
 {
     private readonly IPageService<Request, RequestPreviewModel> PageService;
-    private readonly IRepository<Request> Repository;
+    private readonly IRepository<Request> RepositoryRequest;
+    private readonly IRepository<Borrower> RepositoryBorrower;
+    private readonly IRepository<Requester> RepositoryRequester;
     private readonly IMapper Mapper;
     private readonly ILogger<RequestService> Logger;
 
-    public RequestService(IPageService<Request, RequestPreviewModel> pageService, IRepository<Request> repository, IMapper mapper, ILogger<RequestService> logger)
+    public RequestService(IPageService<Request, RequestPreviewModel> pageService,
+                          IRepository<Request> repositoryRequest,
+                          IRepository<Borrower> repositoryBorrower,
+                          IRepository<Requester> repositoryRequester,
+                          IMapper mapper,
+                          ILogger<RequestService> logger)
     {
         PageService = pageService;
-        Repository = repository;
+        RepositoryRequest = repositoryRequest;
+        RepositoryBorrower = repositoryBorrower;
+        RepositoryRequester = repositoryRequester;
         Mapper = mapper;
         Logger = logger;
     }
 
+    public RequestModel CreateRequest(RequestModel requestModel)
+    {
+        var existingBorrower = RepositoryBorrower.GetById(requestModel.BorrowerId);
+        if (existingBorrower == null)
+        {
+            Exception ex = new Exception("No such borrower");
+            Logger.LogError(ex.ToString());
+            throw ex;
+        }
+
+        var existingRequester = RepositoryRequester.GetById(requestModel.RequesterId);
+        if (existingRequester == null)
+        {
+            Exception ex = new Exception("No such requester");
+            Logger.LogError(ex.ToString());
+            throw ex;
+        }
+
+        Request request = Mapper.Map<Request>(requestModel);
+        RepositoryRequest.Save(request);
+        return Mapper.Map<RequestModel>(request);
+    }
+
     public void DeleteRequest(Guid id)
     {
-        var request = Repository.GetById(id);
+        var request = RepositoryRequest.GetById(id);
         if (request == null)
         {
             Exception ex = new Exception("Request not found");
@@ -32,12 +64,12 @@ public class RequestService : IRequestService
             throw ex;
         }
 
-        Repository.Delete(request);
+        RepositoryRequest.Delete(request);
     }
 
     public RequestModel GetRequest(Guid id)
     {
-        var request = Repository.GetById(id);
+        var request = RepositoryRequest.GetById(id);
         if (request == null)
         {
             Exception ex = new Exception("Request not found");
@@ -50,25 +82,25 @@ public class RequestService : IRequestService
 
     public PageModel<RequestPreviewModel> GetRequests(int limit = 20, int offset = 0)
     {
-        var requests = Repository.GetAll();
+        var requests = RepositoryRequest.GetAll();
         return PageService.CreatePage(requests, limit, offset, x => x.RequestDate);
     }
 
     public PageModel<RequestPreviewModel> GetRequestsByBorrowerId(Guid borrowerId, int limit = 20, int offset = 0)
     {
-        var requests = Repository.GetAll(x => x.BorrowerId == borrowerId);
+        var requests = RepositoryRequest.GetAll(x => x.BorrowerId == borrowerId);
         return PageService.CreatePage(requests, limit, offset, x => x.RequestDate);
     }
 
     public PageModel<RequestPreviewModel> GetRequestsByRequesterId(Guid requesterId, int limit = 20, int offset = 0)
     {
-        var requests = Repository.GetAll(x => x.RequesterId == requesterId);
+        var requests = RepositoryRequest.GetAll(x => x.RequesterId == requesterId);
         return PageService.CreatePage(requests, limit, offset, x => x.RequestDate);
     }
 
     public RequestModel UpdateRequest(Guid id, UpdateRequestModel request)
     {
-        var existingRequest = Repository.GetById(id);
+        var existingRequest = RepositoryRequest.GetById(id);
         if (existingRequest == null)
         {
             Exception ex = new Exception("Request not found");
@@ -91,7 +123,7 @@ public class RequestService : IRequestService
             existingRequest.RequestDate = (DateTime)request.RequestDate;
         }
 
-        existingRequest = Repository.Save(existingRequest);
+        existingRequest = RepositoryRequest.Save(existingRequest);
         return Mapper.Map<RequestModel>(existingRequest);
     }
 }

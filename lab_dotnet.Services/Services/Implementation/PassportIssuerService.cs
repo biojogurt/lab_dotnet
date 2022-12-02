@@ -14,12 +14,22 @@ public class PassportIssuerService : IPassportIssuerService
     private readonly IMapper Mapper;
     private readonly ILogger<PassportIssuerService> Logger;
 
-    public PassportIssuerService(IPageService<PassportIssuer, PassportIssuerPreviewModel> pageService, IRepository<PassportIssuer> repository, IMapper mapper, ILogger<PassportIssuerService> logger)
+    public PassportIssuerService(IPageService<PassportIssuer, PassportIssuerPreviewModel> pageService,
+                                 IRepository<PassportIssuer> repository,
+                                 IMapper mapper,
+                                 ILogger<PassportIssuerService> logger)
     {
         PageService = pageService;
         Repository = repository;
         Mapper = mapper;
         Logger = logger;
+    }
+
+    public PassportIssuerModel CreatePassportIssuer(PassportIssuerModel passportIssuerModel)
+    {
+        PassportIssuer passportIssuer = Mapper.Map<PassportIssuer>(passportIssuerModel);
+        Repository.Save(passportIssuer);
+        return Mapper.Map<PassportIssuerModel>(passportIssuer);
     }
 
     public void DeletePassportIssuer(Guid id)

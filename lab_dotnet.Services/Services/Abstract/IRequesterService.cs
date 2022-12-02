@@ -4,6 +4,8 @@ namespace lab_dotnet.Services.Abstract;
 
 public interface IRequesterService
 {
+    RequesterModel CreateRequester(RequesterModel requesterModel);
+
     RequesterModel GetRequester(Guid id);
 
     RequesterModel UpdateRequester(Guid id, UpdateRequesterModel requester);

@@ -10,21 +10,42 @@ namespace lab_dotnet.Services.Implementation;
 public class BorrowerService : IBorrowerService
 {
     private readonly IPageService<Borrower, BorrowerPreviewModel> PageService;
-    private readonly IRepository<Borrower> Repository;
+    private readonly IRepository<Borrower> RepositoryBorrower;
+    private readonly IRepository<PassportIssuer> RepositoryPassportIssuer;
     private readonly IMapper Mapper;
     private readonly ILogger<BorrowerService> Logger;
 
-    public BorrowerService(IPageService<Borrower, BorrowerPreviewModel> pageService, IRepository<Borrower> repository, IMapper mapper, ILogger<BorrowerService> logger)
+    public BorrowerService(IPageService<Borrower, BorrowerPreviewModel> pageService,
+                           IRepository<Borrower> repositoryBorrower,
+                           IRepository<PassportIssuer> repositoryPassportIssuer,
+                           IMapper mapper,
+                           ILogger<BorrowerService> logger)
     {
         PageService = pageService;
-        Repository = repository;
+        RepositoryBorrower = repositoryBorrower;
+        RepositoryPassportIssuer = repositoryPassportIssuer;
         Mapper = mapper;
         Logger = logger;
     }
 
+    public BorrowerModel CreateBorrower(BorrowerModel borrowerModel)
+    {
+        var existingPassportIssuer = RepositoryPassportIssuer.GetById(borrowerModel.PassportIssuerId);
+        if (existingPassportIssuer == null)
+        {
+            Exception ex = new Exception("No such passport issuer");
+            Logger.LogError(ex.ToString());
+            throw ex;
+        }
+
+        Borrower borrower = Mapper.Map<Borrower>(borrowerModel);
+        RepositoryBorrower.Save(borrower);
+        return Mapper.Map<BorrowerModel>(borrower);
+    }
+
     public void DeleteBorrower(Guid id)
     {
-        var borrower = Repository.GetById(id);
+        var borrower = RepositoryBorrower.GetById(id);
         if (borrower == null)
         {
             Exception ex = new Exception("Borrower not found");
@@ -32,12 +53,12 @@ public class BorrowerService : IBorrowerService
             throw ex;
         }
 
-        Repository.Delete(borrower);
+        RepositoryBorrower.Delete(borrower);
     }
 
     public BorrowerModel GetBorrowerById(Guid id)
     {
-        var borrower = Repository.GetById(id);
+        var borrower = RepositoryBorrower.GetById(id);
         if (borrower == null)
         {
             Exception ex = new Exception("Borrower not found");
@@ -50,7 +71,7 @@ public class BorrowerService : IBorrowerService
 
     public BorrowerModel GetBorrowerByPassport(PassportModel passport)
     {
-        var borrower = Repository.GetAll(x =>
+        var borrower = RepositoryBorrower.GetAll(x =>
                        x.PassportSerial == passport.PassportSerial &&
                        x.PassportNumber == passport.PassportNumber &&
                        x.PassportIssuerId == passport.PassportIssuerId &&
@@ -68,13 +89,13 @@ public class BorrowerService : IBorrowerService
 
     public PageModel<BorrowerPreviewModel> GetBorrowers(int limit = 20, int offset = 0)
     {
-        var borrowers = Repository.GetAll();
+        var borrowers = RepositoryBorrower.GetAll();
         return PageService.CreatePage(borrowers, limit, offset, x => x.FullName);
     }
 
     public BorrowerModel UpdateBorrower(Guid id, UpdateBorrowerModel borrower)
     {
-        var existingBorrower = Repository.GetById(id);
+        var existingBorrower = RepositoryBorrower.GetById(id);
         if (existingBorrower == null)
         {
             Exception ex = new Exception("Borrower not found");
@@ -132,7 +153,7 @@ public class BorrowerService : IBorrowerService
             existingBorrower.ResidentialAddress = borrower.ResidentialAddress;
         }
 
-        existingBorrower = Repository.Save(existingBorrower);
+        existingBorrower = RepositoryBorrower.Save(existingBorrower);
         return Mapper.Map<BorrowerModel>(existingBorrower);
     }
 }

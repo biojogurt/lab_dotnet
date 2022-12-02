@@ -28,6 +28,24 @@ public class RequestController : ControllerBase
     }
 
     /// <summary>
+    /// Create request
+    /// </summary>
+    [HttpPost]
+    public IActionResult CreateRequest([FromBody] RequestRequest request)
+    {
+        try
+        {
+            var requestModel = Service.CreateRequest(Mapper.Map<RequestModel>(request));
+            var requestResponce = Mapper.Map<RequestResponse>(requestModel);
+            return Ok(requestResponce);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.ToString());
+        }
+    }
+
+    /// <summary>
     /// Delete request
     /// </summary>
     [HttpDelete]

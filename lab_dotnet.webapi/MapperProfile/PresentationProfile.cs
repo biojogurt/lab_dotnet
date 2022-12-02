@@ -30,6 +30,7 @@ public class PresentationProfile : Profile
 
         #region Borrower
 
+        CreateMap<BorrowerModel, BorrowerRequest>().ReverseMap();
         CreateMap<BorrowerModel, BorrowerResponse>().ReverseMap();
         CreateMap<UpdateBorrowerRequest, UpdateBorrowerModel>().ReverseMap();
         CreateMap<BorrowerPreviewModel, BorrowerPreviewResponse>().ReverseMap();
@@ -38,6 +39,7 @@ public class PresentationProfile : Profile
 
         #region Contribution
 
+        CreateMap<ContributionModel, ContributionRequest>().ReverseMap();
         CreateMap<ContributionModel, ContributionResponse>().ReverseMap();
         CreateMap<UpdateContributionRequest, UpdateContributionModel>().ReverseMap();
         CreateMap<ContributionPreviewModel, ContributionPreviewResponse>().ReverseMap();
@@ -46,6 +48,7 @@ public class PresentationProfile : Profile
 
         #region Contributor
 
+        CreateMap<ContributorModel, ContributorRequest>().ReverseMap();
         CreateMap<ContributorModel, ContributorResponse>().ReverseMap();
         CreateMap<UpdateContributorRequest, UpdateContributorModel>().ReverseMap();
         CreateMap<ContributorPreviewModel, ContributorPreviewResponse>().ReverseMap();
@@ -54,6 +57,7 @@ public class PresentationProfile : Profile
 
         #region Credit
 
+        CreateMap<CreditModel, CreditRequest>().ReverseMap();
         CreateMap<CreditModel, CreditResponse>().ReverseMap();
         CreateMap<UpdateCreditRequest, UpdateCreditModel>().ReverseMap();
         CreateMap<CreditPreviewModel, CreditPreviewResponse>().ReverseMap();
@@ -62,6 +66,7 @@ public class PresentationProfile : Profile
 
         #region CreditApplication
 
+        CreateMap<CreditApplicationModel, CreditApplicationRequest>().ReverseMap();
         CreateMap<CreditApplicationModel, CreditApplicationResponse>().ReverseMap();
         CreateMap<UpdateCreditApplicationRequest, UpdateCreditApplicationModel>().ReverseMap();
         CreateMap<CreditApplicationPreviewModel, CreditApplicationPreviewResponse>().ReverseMap();
@@ -70,6 +75,7 @@ public class PresentationProfile : Profile
 
         #region Creditor
 
+        CreateMap<CreditorModel, CreditorRequest>().ReverseMap();
         CreateMap<CreditorModel, CreditorResponse>().ReverseMap();
         CreateMap<UpdateCreditorRequest, UpdateCreditorModel>().ReverseMap();
         CreateMap<CreditorPreviewModel, CreditorPreviewResponse>().ReverseMap();
@@ -78,6 +84,7 @@ public class PresentationProfile : Profile
 
         #region CreditType
 
+        CreateMap<CreditTypeModel, CreditTypeRequest>().ReverseMap();
         CreateMap<CreditTypeModel, CreditTypeResponse>().ReverseMap();
         CreateMap<UpdateCreditTypeRequest, UpdateCreditTypeModel>().ReverseMap();
         CreateMap<CreditTypePreviewModel, CreditTypePreviewResponse>().ReverseMap();
@@ -86,6 +93,7 @@ public class PresentationProfile : Profile
 
         #region JobTitle
 
+        CreateMap<JobTitleModel, JobTitleRequest>().ReverseMap();
         CreateMap<JobTitleModel, JobTitleResponse>().ReverseMap();
         CreateMap<UpdateJobTitleRequest, UpdateJobTitleModel>().ReverseMap();
         CreateMap<JobTitlePreviewModel, JobTitlePreviewResponse>().ReverseMap();
@@ -94,6 +102,7 @@ public class PresentationProfile : Profile
 
         #region PassportIssuer
 
+        CreateMap<PassportIssuerModel, PassportIssuerRequest>().ReverseMap();
         CreateMap<PassportIssuerModel, PassportIssuerResponse>().ReverseMap();
         CreateMap<UpdatePassportIssuerRequest, UpdatePassportIssuerModel>().ReverseMap();
         CreateMap<PassportIssuerPreviewModel, PassportIssuerPreviewResponse>().ReverseMap();
@@ -102,6 +111,7 @@ public class PresentationProfile : Profile
 
         #region Payment
 
+        CreateMap<PaymentModel, PaymentRequest>().ReverseMap();
         CreateMap<PaymentModel, PaymentResponse>().ReverseMap();
         CreateMap<UpdatePaymentRequest, UpdatePaymentModel>().ReverseMap();
         CreateMap<PaymentPreviewModel, PaymentPreviewResponse>().ReverseMap();
@@ -110,6 +120,7 @@ public class PresentationProfile : Profile
 
         #region Request
 
+        CreateMap<RequestModel, RequestRequest>().ReverseMap();
         CreateMap<RequestModel, RequestResponse>().ReverseMap();
         CreateMap<UpdateRequestRequest, UpdateRequestModel>().ReverseMap();
         CreateMap<RequestPreviewModel, RequestPreviewResponse>().ReverseMap();
@@ -118,6 +129,7 @@ public class PresentationProfile : Profile
 
         #region Requester
 
+        CreateMap<RequesterModel, RequesterRequest>().ReverseMap();
         CreateMap<RequesterModel, RequesterResponse>().ReverseMap();
         CreateMap<UpdateRequesterRequest, UpdateRequesterModel>().ReverseMap();
         CreateMap<RequesterPreviewModel, RequesterPreviewResponse>().ReverseMap();

@@ -14,12 +14,22 @@ public class JobTitleService : IJobTitleService
     private readonly IMapper Mapper;
     private readonly ILogger<JobTitleService> Logger;
 
-    public JobTitleService(IPageService<JobTitle, JobTitlePreviewModel> pageService, IRepository<JobTitle> repository, IMapper mapper, ILogger<JobTitleService> logger)
+    public JobTitleService(IPageService<JobTitle, JobTitlePreviewModel> pageService, 
+                           IRepository<JobTitle> repository, 
+                           IMapper mapper, 
+                           ILogger<JobTitleService> logger)
     {
         PageService = pageService;
         Repository = repository;
         Mapper = mapper;
         Logger = logger;
+    }
+
+    public JobTitleModel CreateJobTitle(JobTitleModel jobTitleModel)
+    {
+        JobTitle jobTitle = Mapper.Map<JobTitle>(jobTitleModel);
+        Repository.Save(jobTitle);
+        return Mapper.Map<JobTitleModel>(jobTitle);
     }
 
     public void DeleteJobTitle(Guid id)

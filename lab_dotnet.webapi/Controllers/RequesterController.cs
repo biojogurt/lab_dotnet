@@ -28,6 +28,24 @@ public class RequesterController : ControllerBase
     }
 
     /// <summary>
+    /// Create requester
+    /// </summary>
+    [HttpPost]
+    public IActionResult CreateRequester([FromBody] RequesterRequest requester)
+    {
+        try
+        {
+            var requesterModel = Service.CreateRequester(Mapper.Map<RequesterModel>(requester));
+            var requesterResponce = Mapper.Map<RequesterResponse>(requesterModel);
+            return Ok(requesterResponce);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.ToString());
+        }
+    }
+
+    /// <summary>
     /// Delete requester
     /// </summary>
     [HttpDelete]

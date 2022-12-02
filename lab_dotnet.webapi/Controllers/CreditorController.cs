@@ -28,6 +28,24 @@ public class CreditorController : ControllerBase
     }
 
     /// <summary>
+    /// Create creditor
+    /// </summary>
+    [HttpPost]
+    public IActionResult CreateCreditor([FromBody] CreditorRequest creditor)
+    {
+        try
+        {
+            var creditorModel = Service.CreateCreditor(Mapper.Map<CreditorModel>(creditor));
+            var creditorResponce = Mapper.Map<CreditorResponse>(creditorModel);
+            return Ok(creditorResponce);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.ToString());
+        }
+    }
+
+    /// <summary>
     /// Delete creditor
     /// </summary>
     [HttpDelete]

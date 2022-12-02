@@ -4,6 +4,8 @@ namespace lab_dotnet.Services.Abstract;
 
 public interface IContributorService
 {
+    ContributorModel CreateContributor(ContributorModel contributorModel);
+
     ContributorModel GetContributor(Guid id);
 
     ContributorModel UpdateContributor(Guid id, UpdateContributorModel contributor);

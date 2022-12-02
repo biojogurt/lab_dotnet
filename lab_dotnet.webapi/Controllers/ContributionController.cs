@@ -28,6 +28,24 @@ public class ContributionController : ControllerBase
     }
 
     /// <summary>
+    /// Create contribution
+    /// </summary>
+    [HttpPost]
+    public IActionResult CreateContribution([FromBody] ContributionRequest contribution)
+    {
+        try
+        {
+            var contributionModel = Service.CreateContribution(Mapper.Map<ContributionModel>(contribution));
+            var contributionResponce = Mapper.Map<ContributionResponse>(contributionModel);
+            return Ok(contributionResponce);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.ToString());
+        }
+    }
+
+    /// <summary>
     /// Delete contribution
     /// </summary>
     [HttpDelete]

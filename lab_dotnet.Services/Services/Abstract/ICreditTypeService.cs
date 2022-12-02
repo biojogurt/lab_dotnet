@@ -4,6 +4,8 @@ namespace lab_dotnet.Services.Abstract;
 
 public interface ICreditTypeService
 {
+    CreditTypeModel CreateCreditType(CreditTypeModel creditTypeModel);
+
     CreditTypeModel GetCreditType(Guid id);
 
     CreditTypeModel UpdateCreditType(Guid id, UpdateCreditTypeModel creditType);

@@ -107,6 +107,11 @@
             Borrowers controller
             </summary>
         </member>
+        <member name="M:lab_dotnet.WebAPI.Controllers.BorrowerController.CreateBorrower(lab_dotnet.WebAPI.Models.BorrowerRequest)">
+            <summary>
+            Create borrower
+            </summary>
+        </member>
         <member name="M:lab_dotnet.WebAPI.Controllers.BorrowerController.DeleteBorrower(System.Guid)">
             <summary>
             Delete borrower
@@ -140,6 +145,11 @@
         <member name="M:lab_dotnet.WebAPI.Controllers.ContributionController.#ctor(lab_dotnet.Services.Abstract.IContributionService,AutoMapper.IMapper)">
             <summary>
             Contribution controller
+            </summary>
+        </member>
+        <member name="M:lab_dotnet.WebAPI.Controllers.ContributionController.CreateContribution(lab_dotnet.WebAPI.Models.ContributionRequest)">
+            <summary>
+            Create contribution
             </summary>
         </member>
         <member name="M:lab_dotnet.WebAPI.Controllers.ContributionController.DeleteContribution(System.Guid)">
@@ -182,6 +192,11 @@
             Contributor controller
             </summary>
         </member>
+        <member name="M:lab_dotnet.WebAPI.Controllers.ContributorController.CreateContributor(lab_dotnet.WebAPI.Models.ContributorRequest)">
+            <summary>
+            Create contributor
+            </summary>
+        </member>
         <member name="M:lab_dotnet.WebAPI.Controllers.ContributorController.DeleteContributor(System.Guid)">
             <summary>
             Delete contributor
@@ -210,6 +225,11 @@
         <member name="M:lab_dotnet.WebAPI.Controllers.CreditApplicationController.#ctor(lab_dotnet.Services.Abstract.ICreditApplicationService,AutoMapper.IMapper)">
             <summary>
             CreditApplication controller
+            </summary>
+        </member>
+        <member name="M:lab_dotnet.WebAPI.Controllers.CreditApplicationController.CreateCreditApplication(lab_dotnet.WebAPI.Models.CreditApplicationRequest)">
+            <summary>
+            Create credit application
             </summary>
         </member>
         <member name="M:lab_dotnet.WebAPI.Controllers.CreditApplicationController.DeleteCreditApplication(System.Guid)">
@@ -257,6 +277,11 @@
             Credit controller
             </summary>
         </member>
+        <member name="M:lab_dotnet.WebAPI.Controllers.CreditController.CreateCredit(lab_dotnet.WebAPI.Models.CreditRequest)">
+            <summary>
+            Create credit
+            </summary>
+        </member>
         <member name="M:lab_dotnet.WebAPI.Controllers.CreditController.DeleteCredit(System.Guid)">
             <summary>
             Delete credit
@@ -292,6 +317,11 @@
             Creditor controller
             </summary>
         </member>
+        <member name="M:lab_dotnet.WebAPI.Controllers.CreditorController.CreateCreditor(lab_dotnet.WebAPI.Models.CreditorRequest)">
+            <summary>
+            Create creditor
+            </summary>
+        </member>
         <member name="M:lab_dotnet.WebAPI.Controllers.CreditorController.DeleteCreditor(System.Guid)">
             <summary>
             Delete creditor
@@ -320,6 +350,11 @@
         <member name="M:lab_dotnet.WebAPI.Controllers.CreditTypeController.#ctor(lab_dotnet.Services.Abstract.ICreditTypeService,AutoMapper.IMapper)">
             <summary>
             CreditType controller
+            </summary>
+        </member>
+        <member name="M:lab_dotnet.WebAPI.Controllers.CreditTypeController.CreateCreditType(lab_dotnet.WebAPI.Models.CreditTypeRequest)">
+            <summary>
+            Create credit type
             </summary>
         </member>
         <member name="M:lab_dotnet.WebAPI.Controllers.CreditTypeController.DeleteCreditType(System.Guid)">
@@ -352,6 +387,11 @@
             JobTitle controller
             </summary>
         </member>
+        <member name="M:lab_dotnet.WebAPI.Controllers.JobTitleController.CreateJobTitle(lab_dotnet.WebAPI.Models.JobTitleRequest)">
+            <summary>
+            Create job title
+            </summary>
+        </member>
         <member name="M:lab_dotnet.WebAPI.Controllers.JobTitleController.DeleteJobTitle(System.Guid)">
             <summary>
             Delete job title
@@ -382,6 +422,11 @@
             PassportIssuer controller
             </summary>
         </member>
+        <member name="M:lab_dotnet.WebAPI.Controllers.PassportIssuerController.CreatePassportIssuer(lab_dotnet.WebAPI.Models.PassportIssuerRequest)">
+            <summary>
+            Create passport issuer
+            </summary>
+        </member>
         <member name="M:lab_dotnet.WebAPI.Controllers.PassportIssuerController.DeletePassportIssuer(System.Guid)">
             <summary>
             Delete passport issuer
@@ -410,6 +455,11 @@
         <member name="M:lab_dotnet.WebAPI.Controllers.PaymentController.#ctor(lab_dotnet.Services.Abstract.IPaymentService,AutoMapper.IMapper)">
             <summary>
             Payment controller
+            </summary>
+        </member>
+        <member name="M:lab_dotnet.WebAPI.Controllers.PaymentController.CreatePayment(lab_dotnet.WebAPI.Models.PaymentRequest)">
+            <summary>
+            Create payment
             </summary>
         </member>
         <member name="M:lab_dotnet.WebAPI.Controllers.PaymentController.DeletePayment(System.Guid)">
@@ -445,6 +495,11 @@
         <member name="M:lab_dotnet.WebAPI.Controllers.RequestController.#ctor(lab_dotnet.Services.Abstract.IRequestService,AutoMapper.IMapper)">
             <summary>
             Request controller
+            </summary>
+        </member>
+        <member name="M:lab_dotnet.WebAPI.Controllers.RequestController.CreateRequest(lab_dotnet.WebAPI.Models.RequestRequest)">
+            <summary>
+            Create request
             </summary>
         </member>
         <member name="M:lab_dotnet.WebAPI.Controllers.RequestController.DeleteRequest(System.Guid)">
@@ -485,6 +540,11 @@
         <member name="M:lab_dotnet.WebAPI.Controllers.RequesterController.#ctor(lab_dotnet.Services.Abstract.IRequesterService,AutoMapper.IMapper)">
             <summary>
             Requester controller
+            </summary>
+        </member>
+        <member name="M:lab_dotnet.WebAPI.Controllers.RequesterController.CreateRequester(lab_dotnet.WebAPI.Models.RequesterRequest)">
+            <summary>
+            Create requester
             </summary>
         </member>
         <member name="M:lab_dotnet.WebAPI.Controllers.RequesterController.DeleteRequester(System.Guid)">

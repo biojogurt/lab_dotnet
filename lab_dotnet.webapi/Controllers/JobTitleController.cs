@@ -28,6 +28,24 @@ public class JobTitleController : ControllerBase
     }
 
     /// <summary>
+    /// Create job title
+    /// </summary>
+    [HttpPost]
+    public IActionResult CreateJobTitle([FromBody] JobTitleRequest jobTitle)
+    {
+        try
+        {
+            var jobTitleModel = Service.CreateJobTitle(Mapper.Map<JobTitleModel>(jobTitle));
+            var jobTitleResponce = Mapper.Map<JobTitleResponse>(jobTitleModel);
+            return Ok(jobTitleResponce);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.ToString());
+        }
+    }
+
+    /// <summary>
     /// Delete job title
     /// </summary>
     [HttpDelete]

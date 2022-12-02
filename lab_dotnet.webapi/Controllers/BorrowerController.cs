@@ -28,6 +28,24 @@ public class BorrowerController : ControllerBase
     }
 
     /// <summary>
+    /// Create borrower
+    /// </summary>
+    [HttpPost]
+    public IActionResult CreateBorrower([FromBody] BorrowerRequest borrower)
+    {
+        try
+        {
+            var borrowerModel = Service.CreateBorrower(Mapper.Map<BorrowerModel>(borrower));
+            var borrowerResponce = Mapper.Map<BorrowerResponse>(borrowerModel);
+            return Ok(borrowerResponce);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.ToString());
+        }
+    }
+
+    /// <summary>
     /// Delete borrower
     /// </summary>
     [HttpDelete]

@@ -28,6 +28,24 @@ public class PassportIssuerController : ControllerBase
     }
 
     /// <summary>
+    /// Create passport issuer
+    /// </summary>
+    [HttpPost]
+    public IActionResult CreatePassportIssuer([FromBody] PassportIssuerRequest passportIssuer)
+    {
+        try
+        {
+            var passportIssuerModel = Service.CreatePassportIssuer(Mapper.Map<PassportIssuerModel>(passportIssuer));
+            var passportIssuerResponce = Mapper.Map<PassportIssuerResponse>(passportIssuerModel);
+            return Ok(passportIssuerResponce);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.ToString());
+        }
+    }
+
+    /// <summary>
     /// Delete passport issuer
     /// </summary>
     [HttpDelete]

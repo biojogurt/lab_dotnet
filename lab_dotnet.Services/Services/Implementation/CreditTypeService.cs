@@ -14,12 +14,22 @@ public class CreditTypeService : ICreditTypeService
     private readonly IMapper Mapper;
     private readonly ILogger<CreditTypeService> Logger;
 
-    public CreditTypeService(IPageService<CreditType, CreditTypePreviewModel> pageService, IRepository<CreditType> repository, IMapper mapper, ILogger<CreditTypeService> logger)
+    public CreditTypeService(IPageService<CreditType, CreditTypePreviewModel> pageService, 
+                             IRepository<CreditType> repository, 
+                             IMapper mapper, 
+                             ILogger<CreditTypeService> logger)
     {
         PageService = pageService;
         Repository = repository;
         Mapper = mapper;
         Logger = logger;
+    }
+
+    public CreditTypeModel CreateCreditType(CreditTypeModel creditTypeModel)
+    {
+        CreditType creditType = Mapper.Map<CreditType>(creditTypeModel);
+        Repository.Save(creditType);
+        return Mapper.Map<CreditTypeModel>(creditType);
     }
 
     public void DeleteCreditType(Guid id)

@@ -14,12 +14,22 @@ public class RequesterService : IRequesterService
     private readonly IMapper Mapper;
     private readonly ILogger<RequesterService> Logger;
 
-    public RequesterService(IPageService<Requester, RequesterPreviewModel> pageService, IRepository<Requester> repository, IMapper mapper, ILogger<RequesterService> logger)
+    public RequesterService(IPageService<Requester, RequesterPreviewModel> pageService,
+                            IRepository<Requester> repository,
+                            IMapper mapper,
+                            ILogger<RequesterService> logger)
     {
         PageService = pageService;
         Repository = repository;
         Mapper = mapper;
         Logger = logger;
+    }
+
+    public RequesterModel CreateRequester(RequesterModel requesterModel)
+    {
+        Requester requester = Mapper.Map<Requester>(requesterModel);
+        Repository.Save(requester);
+        return Mapper.Map<RequesterModel>(requester);
     }
 
     public void DeleteRequester(Guid id)

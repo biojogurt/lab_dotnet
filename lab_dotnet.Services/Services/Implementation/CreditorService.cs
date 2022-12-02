@@ -14,12 +14,22 @@ public class CreditorService : ICreditorService
     private readonly IMapper Mapper;
     private readonly ILogger<CreditorService> Logger;
 
-    public CreditorService(IPageService<Creditor, CreditorPreviewModel> pageService, IRepository<Creditor> repository, IMapper mapper, ILogger<CreditorService> logger)
+    public CreditorService(IPageService<Creditor, CreditorPreviewModel> pageService,
+                           IRepository<Creditor> repository,
+                           IMapper mapper,
+                           ILogger<CreditorService> logger)
     {
         PageService = pageService;
         Repository = repository;
         Mapper = mapper;
         Logger = logger;
+    }
+
+    public CreditorModel CreateCreditor(CreditorModel creditorModel)
+    {
+        Creditor creditor = Mapper.Map<Creditor>(creditorModel);
+        Repository.Save(creditor);
+        return Mapper.Map<CreditorModel>(creditor);
     }
 
     public void DeleteCreditor(Guid id)
