@@ -17,7 +17,7 @@ public class UpdateBorrowerRequest
     public string? Snils { get; set; }
     public string? RegistrationAddress { get; set; }
     public string? ResidentialAddress { get; set; }
-    
+
     #endregion Model
 
     #region Validator

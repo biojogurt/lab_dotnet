@@ -14,9 +14,9 @@ public class JobTitleService : IJobTitleService
     private readonly IMapper Mapper;
     private readonly ILogger<JobTitleService> Logger;
 
-    public JobTitleService(IPageService<JobTitle, JobTitlePreviewModel> pageService, 
-                           IRepository<JobTitle> repository, 
-                           IMapper mapper, 
+    public JobTitleService(IPageService<JobTitle, JobTitlePreviewModel> pageService,
+                           IRepository<JobTitle> repository,
+                           IMapper mapper,
                            ILogger<JobTitleService> logger)
     {
         PageService = pageService;

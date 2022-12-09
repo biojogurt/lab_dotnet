@@ -73,7 +73,7 @@ public class ContributorService : IContributorService
             Logger.LogError(ex.ToString());
             throw ex;
         }
-        
+
         if (contributor.Name != null)
         {
             existingContributor.Name = contributor.Name;

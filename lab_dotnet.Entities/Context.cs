@@ -76,7 +76,12 @@ public class Context : DbContext
         #endregion Dictionaries
 
         #region Borrower
-        builder.Entity<Borrower>().ToTable("Borrowers")
+        builder.Entity<Borrower>().ToTable("Borrowers", t =>
+                                          {
+                                              t.HasCheckConstraint("PassportSerial", "PassportSerial >= 1000 and PassportSerial <= 9999");
+                                              t.HasCheckConstraint("PassportNumber", "PassportNumber >= 100000 and PassportNumber <= 999999");
+                                              t.HasCheckConstraint("PassportIssueDate", "PassportIssueDate > Birthdate");
+                                          })
                                   .HasKey(x => x.Id);
         builder.Entity<Borrower>().HasIndex(x => new
         {
@@ -90,9 +95,6 @@ public class Context : DbContext
                                   .IsUnique();
         builder.Entity<Borrower>().HasIndex(x => x.Snils)
                                   .IsUnique();
-        builder.Entity<Borrower>().HasCheckConstraint("PassportSerial", "PassportSerial >= 1000 and PassportSerial <= 9999");
-        builder.Entity<Borrower>().HasCheckConstraint("PassportNumber", "PassportNumber >= 100000 and PassportNumber <= 999999");
-        builder.Entity<Borrower>().HasCheckConstraint("PassportIssueDate", "PassportIssueDate > Birthdate");
         builder.Entity<Borrower>().HasOne(x => x.PassportIssuer)
                                   .WithMany(x => x.Borrowers)
                                   .HasForeignKey(x => x.PassportIssuerId)
@@ -129,9 +131,9 @@ public class Context : DbContext
         #endregion CreditApplication
 
         #region Credit
-        builder.Entity<Credit>().ToTable("Credits")
+        builder.Entity<Credit>().ToTable("Credits",
+                                         t => t.HasCheckConstraint("InterestRate", "InterestRate >= 0 and InterestRate <= 100"))
                                 .HasKey(x => x.CreditApplicationId);
-        builder.Entity<Credit>().HasCheckConstraint("InterestRate", "InterestRate >= 0 and InterestRate <= 100");
         builder.Entity<Credit>().HasMany(x => x.Payments)
                                 .WithOne(x => x.Credit)
                                 .HasForeignKey(x => x.CreditId)
@@ -139,9 +141,9 @@ public class Context : DbContext
         #endregion Credit
 
         #region Payment
-        builder.Entity<Payment>().ToTable("Payments")
+        builder.Entity<Payment>().ToTable("Payments",
+                                          t => t.HasCheckConstraint("Debt", "Debt <= RemainingAmount"))
                                  .HasKey(x => x.Id);
-        builder.Entity<Payment>().HasCheckConstraint("Debt", "Debt <= RemainingAmount");
         #endregion Payment
 
         #region Contribution
@@ -171,9 +173,9 @@ public class Context : DbContext
         #endregion Request
 
         #region AppUsers
-        builder.Entity<AppUser>().ToTable("AppUsers")
+        builder.Entity<AppUser>().ToTable("AppUsers",
+                                          t => t.HasCheckConstraint("AccessLevel", "AccessLevel >= 1 and AccessLevel <= 3"))
                                  .HasKey(x => x.Id);
-        builder.Entity<AppUser>().HasCheckConstraint("AccessLevel", "AccessLevel >= 1 and AccessLevel <= 3");
         builder.Entity<AppUser>().HasOne(x => x.JobTitle)
                                  .WithMany(x => x.AppUsers)
                                  .HasForeignKey(x => x.JobTitleId)

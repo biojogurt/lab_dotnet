@@ -11,4 +11,4 @@ public static partial class ServicesExtensions
         services.AddScoped<DbContext, Context>();
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
     }
-} 
+}

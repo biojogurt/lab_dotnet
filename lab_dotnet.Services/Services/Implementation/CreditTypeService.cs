@@ -14,9 +14,9 @@ public class CreditTypeService : ICreditTypeService
     private readonly IMapper Mapper;
     private readonly ILogger<CreditTypeService> Logger;
 
-    public CreditTypeService(IPageService<CreditType, CreditTypePreviewModel> pageService, 
-                             IRepository<CreditType> repository, 
-                             IMapper mapper, 
+    public CreditTypeService(IPageService<CreditType, CreditTypePreviewModel> pageService,
+                             IRepository<CreditType> repository,
+                             IMapper mapper,
                              ILogger<CreditTypeService> logger)
     {
         PageService = pageService;

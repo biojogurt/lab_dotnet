@@ -73,7 +73,7 @@ public class CreditorService : ICreditorService
             Logger.LogError(ex.ToString());
             throw ex;
         }
-        
+
         if (creditor.Name != null)
         {
             existingCreditor.Name = creditor.Name;
