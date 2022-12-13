@@ -8,8 +8,6 @@ public class UpdateAppUserRequest
     #region Model
 
     public string? FullName { get; set; }
-    public string? Email { get; set; }
-    public string? PasswordHash { get; set; }
 
     #endregion Model
 
@@ -18,11 +16,7 @@ public class UpdateAppUserRequest
     public class Validator : AbstractValidator<UpdateAppUserRequest>
     {
         public Validator()
-        {
-            RuleFor(x => x.Email)
-                    .EmailAddress()
-                    .WithMessage("Must be email");
-        }
+        { }
     }
 
     #endregion Validator

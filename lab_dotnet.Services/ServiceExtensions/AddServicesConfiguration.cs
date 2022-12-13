@@ -14,6 +14,7 @@ public static partial class ServicesExtensions
         //services
         services.AddScoped(typeof(IPageService<,>), typeof(PageService<,>));
         services.AddScoped<IAppUserService, AppUserService>();
+        services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IBorrowerService, BorrowerService>();
         services.AddScoped<IContributionService, ContributionService>();
         services.AddScoped<IContributorService, ContributorService>();

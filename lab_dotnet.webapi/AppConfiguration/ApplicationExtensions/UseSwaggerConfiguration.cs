@@ -22,6 +22,10 @@ public static partial class AppExtensions
             {
                 options.SwaggerEndpoint($"{description.GroupName}/swagger.json", description.GroupName);
             };
+
+            options.OAuthAppName("API - Swagger");
+            options.OAuthClientId("swagger");
+            options.OAuthClientSecret("swagger");
         });
     }
 }

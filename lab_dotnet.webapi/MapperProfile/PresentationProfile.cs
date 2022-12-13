@@ -20,6 +20,13 @@ public class PresentationProfile : Profile
 
         #endregion Base
 
+        #region Auth
+
+        CreateMap<RegisterUserRequest, RegisterUserModel>().ReverseMap();
+        CreateMap<LoginUserRequest, LoginUserModel>().ReverseMap();
+
+        #endregion Auth
+
         #region AppUser
 
         CreateMap<AppUserModel, AppUserResponse>().ReverseMap();

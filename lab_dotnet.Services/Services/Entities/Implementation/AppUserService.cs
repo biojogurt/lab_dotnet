@@ -3,6 +3,8 @@ using lab_dotnet.Entities.Models;
 using lab_dotnet.Repository;
 using lab_dotnet.Services.Abstract;
 using lab_dotnet.Services.Models;
+using lab_dotnet.Exceptions;
+using lab_dotnet.Exceptions.ResultCodes;
 using Microsoft.Extensions.Logging;
 
 namespace lab_dotnet.Services.Implementation;
@@ -14,7 +16,8 @@ public class AppUserService : IAppUserService
     private readonly IMapper Mapper;
     private readonly ILogger<AppUserService> Logger;
 
-    public AppUserService(IPageService<AppUser, AppUserPreviewModel> pageService,
+    public AppUserService(IPageService<AppUser,
+                          AppUserPreviewModel> pageService,
                           IRepository<AppUser> repository,
                           IMapper mapper,
                           ILogger<AppUserService> logger)
@@ -30,7 +33,7 @@ public class AppUserService : IAppUserService
         var user = Repository.GetById(id);
         if (user == null)
         {
-            Exception ex = new Exception("User not found");
+            LogicException ex = new LogicException(ResultCode.USER_NOT_FOUND);
             Logger.LogError(ex.ToString());
             throw ex;
         }
@@ -43,7 +46,7 @@ public class AppUserService : IAppUserService
         var user = Repository.GetById(id);
         if (user == null)
         {
-            Exception ex = new Exception("User not found");
+            LogicException ex = new LogicException(ResultCode.USER_NOT_FOUND);
             Logger.LogError(ex.ToString());
             throw ex;
         }
@@ -74,7 +77,7 @@ public class AppUserService : IAppUserService
         var existingUser = Repository.GetById(id);
         if (existingUser == null)
         {
-            Exception ex = new Exception("User not found");
+            LogicException ex = new LogicException(ResultCode.USER_NOT_FOUND);
             Logger.LogError(ex.ToString());
             throw ex;
         }
@@ -82,16 +85,6 @@ public class AppUserService : IAppUserService
         if (appUser.FullName != null)
         {
             existingUser.FullName = appUser.FullName;
-        }
-
-        if (appUser.Email != null)
-        {
-            existingUser.Email = appUser.Email;
-        }
-
-        if (appUser.PasswordHash != null)
-        {
-            existingUser.PasswordHash = appUser.PasswordHash;
         }
 
         existingUser = Repository.Save(existingUser);

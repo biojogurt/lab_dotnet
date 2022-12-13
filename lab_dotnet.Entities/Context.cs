@@ -1,28 +1,18 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using lab_dotnet.Entities.Models;
 
 namespace lab_dotnet.Entities;
 
-public class Context : DbContext
+public class Context : IdentityDbContext<AppUser, UserRole, Guid>
 {
-    public DbSet<AppUser> AppUsers { get; set; }
-    public DbSet<JobTitle> JobTitles { get; set; }
-    public DbSet<Borrower> Borrowers { get; set; }
-    public DbSet<Contribution> Contributions { get; set; }
-    public DbSet<Contributor> Contributors { get; set; }
-    public DbSet<Credit> Credits { get; set; }
-    public DbSet<CreditApplication> CreditApplications { get; set; }
-    public DbSet<Creditor> Creditors { get; set; }
-    public DbSet<CreditType> CreditTypes { get; set; }
-    public DbSet<PassportIssuer> PassportIssuers { get; set; }
-    public DbSet<Payment> Payments { get; set; }
-    public DbSet<Request> Requests { get; set; }
-    public DbSet<Requester> Requesters { get; set; }
-
     public Context(DbContextOptions<Context> options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
+        base.OnModelCreating(builder);
+
         #region Dictionaries
 
         #region PassportIssuer
@@ -180,6 +170,14 @@ public class Context : DbContext
                                  .WithMany(x => x.AppUsers)
                                  .HasForeignKey(x => x.JobTitleId)
                                  .OnDelete(DeleteBehavior.Restrict);
+
+        builder.Entity<IdentityUserClaim<Guid>>().ToTable("user_claims");
+        builder.Entity<IdentityUserLogin<Guid>>().ToTable("user_logins");
+        builder.Entity<IdentityUserToken<Guid>>().ToTable("user_tokens");
+        builder.Entity<UserRole>().ToTable("user_roles");
+        builder.Entity<IdentityRoleClaim<Guid>>().ToTable("user_role_claims");
+        builder.Entity<IdentityUserRole<Guid>>().ToTable("user_role_owners");
+
         #endregion AppUsers
     }
 }

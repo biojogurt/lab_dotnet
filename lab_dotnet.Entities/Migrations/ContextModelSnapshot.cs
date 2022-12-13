@@ -8,7 +8,7 @@ using lab_dotnet.Entities;
 
 #nullable disable
 
-namespace lab_dotnet.Entities.Migrations
+namespace labdotnet.Entities.Migrations
 {
     [DbContext(typeof(Context))]
     partial class ContextModelSnapshot : ModelSnapshot
@@ -17,10 +17,203 @@ namespace lab_dotnet.Entities.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.10")
+                .HasAnnotation("ProductVersion", "7.0.0")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("user_role_claims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("user_claims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("user_logins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("user_role_owners", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("user_tokens", (string)null);
+                });
+
+            modelBuilder.Entity("lab_dotnet.Entities.Models.AppUser", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AccessLevel")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("JobTitleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTime>("ModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("JobTitleId");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AppUsers", null, t =>
+                        {
+                            t.HasCheckConstraint("AccessLevel", "AccessLevel >= 1 and AccessLevel <= 3");
+                        });
+                });
 
             modelBuilder.Entity("lab_dotnet.Entities.Models.Borrower", b =>
                 {
@@ -81,13 +274,14 @@ namespace lab_dotnet.Entities.Migrations
                     b.HasIndex("PassportSerial", "PassportNumber", "PassportIssuerId", "PassportIssueDate")
                         .IsUnique();
 
-                    b.ToTable("Borrowers", (string)null);
+                    b.ToTable("Borrowers", null, t =>
+                        {
+                            t.HasCheckConstraint("PassportIssueDate", "PassportIssueDate > Birthdate");
 
-                    b.HasCheckConstraint("PassportIssueDate", "PassportIssueDate > Birthdate");
+                            t.HasCheckConstraint("PassportNumber", "PassportNumber >= 100000 and PassportNumber <= 999999");
 
-                    b.HasCheckConstraint("PassportNumber", "PassportNumber >= 100000 and PassportNumber <= 999999");
-
-                    b.HasCheckConstraint("PassportSerial", "PassportSerial >= 1000 and PassportSerial <= 9999");
+                            t.HasCheckConstraint("PassportSerial", "PassportSerial >= 1000 and PassportSerial <= 9999");
+                        });
                 });
 
             modelBuilder.Entity("lab_dotnet.Entities.Models.Contribution", b =>
@@ -179,9 +373,10 @@ namespace lab_dotnet.Entities.Migrations
 
                     b.HasKey("CreditApplicationId");
 
-                    b.ToTable("Credits", (string)null);
-
-                    b.HasCheckConstraint("InterestRate", "InterestRate >= 0 and InterestRate <= 100");
+                    b.ToTable("Credits", null, t =>
+                        {
+                            t.HasCheckConstraint("InterestRate", "InterestRate >= 0 and InterestRate <= 100");
+                        });
                 });
 
             modelBuilder.Entity("lab_dotnet.Entities.Models.CreditApplication", b =>
@@ -222,6 +417,30 @@ namespace lab_dotnet.Entities.Migrations
                     b.ToTable("CreditApplications", (string)null);
                 });
 
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditType", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("CreditTypes", (string)null);
+                });
+
             modelBuilder.Entity("lab_dotnet.Entities.Models.Creditor", b =>
                 {
                     b.Property<Guid>("Id")
@@ -253,7 +472,7 @@ namespace lab_dotnet.Entities.Migrations
                     b.ToTable("Creditors", (string)null);
                 });
 
-            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditType", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.JobTitle", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -274,7 +493,7 @@ namespace lab_dotnet.Entities.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("CreditTypes", (string)null);
+                    b.ToTable("JobTitles", (string)null);
                 });
 
             modelBuilder.Entity("lab_dotnet.Entities.Models.PassportIssuer", b =>
@@ -332,9 +551,10 @@ namespace lab_dotnet.Entities.Migrations
 
                     b.HasIndex("CreditId");
 
-                    b.ToTable("Payments", (string)null);
-
-                    b.HasCheckConstraint("Debt", "Debt <= RemainingAmount");
+                    b.ToTable("Payments", null, t =>
+                        {
+                            t.HasCheckConstraint("Debt", "Debt <= RemainingAmount");
+                        });
                 });
 
             modelBuilder.Entity("lab_dotnet.Entities.Models.Request", b =>
@@ -398,67 +618,94 @@ namespace lab_dotnet.Entities.Migrations
                     b.ToTable("Requesters", (string)null);
                 });
 
-            modelBuilder.Entity("lab_dotnet.Entities.Models.AppUser", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.UserRole", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("AccessLevel")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("JobTitleId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("ModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("JobTitleId");
-
-                    b.ToTable("AppUsers", (string)null);
-
-                    b.HasCheckConstraint("AccessLevel", "AccessLevel >= 1 and AccessLevel <= 3");
-                });
-
-            modelBuilder.Entity("lab_dotnet.Entities.Models.JobTitle", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("ModificationTime")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("JobTitles", (string)null);
+                    b.ToTable("user_roles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+                {
+                    b.HasOne("lab_dotnet.Entities.Models.UserRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+                {
+                    b.HasOne("lab_dotnet.Entities.Models.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+                {
+                    b.HasOne("lab_dotnet.Entities.Models.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+                {
+                    b.HasOne("lab_dotnet.Entities.Models.UserRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("lab_dotnet.Entities.Models.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+                {
+                    b.HasOne("lab_dotnet.Entities.Models.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("lab_dotnet.Entities.Models.AppUser", b =>
+                {
+                    b.HasOne("lab_dotnet.Entities.Models.JobTitle", "JobTitle")
+                        .WithMany("AppUsers")
+                        .HasForeignKey("JobTitleId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("JobTitle");
                 });
 
             modelBuilder.Entity("lab_dotnet.Entities.Models.Borrower", b =>
@@ -559,17 +806,6 @@ namespace lab_dotnet.Entities.Migrations
                     b.Navigation("Requester");
                 });
 
-            modelBuilder.Entity("lab_dotnet.Entities.Models.AppUser", b =>
-                {
-                    b.HasOne("lab_dotnet.Entities.Models.JobTitle", "JobTitle")
-                        .WithMany("AppUsers")
-                        .HasForeignKey("JobTitleId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("JobTitle");
-                });
-
             modelBuilder.Entity("lab_dotnet.Entities.Models.Borrower", b =>
                 {
                     b.Navigation("Contributions");
@@ -591,7 +827,13 @@ namespace lab_dotnet.Entities.Migrations
 
             modelBuilder.Entity("lab_dotnet.Entities.Models.CreditApplication", b =>
                 {
-                    b.Navigation("Credit");
+                    b.Navigation("Credit")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditType", b =>
+                {
+                    b.Navigation("CreditApplications");
                 });
 
             modelBuilder.Entity("lab_dotnet.Entities.Models.Creditor", b =>
@@ -599,9 +841,9 @@ namespace lab_dotnet.Entities.Migrations
                     b.Navigation("CreditApplications");
                 });
 
-            modelBuilder.Entity("lab_dotnet.Entities.Models.CreditType", b =>
+            modelBuilder.Entity("lab_dotnet.Entities.Models.JobTitle", b =>
                 {
-                    b.Navigation("CreditApplications");
+                    b.Navigation("AppUsers");
                 });
 
             modelBuilder.Entity("lab_dotnet.Entities.Models.PassportIssuer", b =>
@@ -612,11 +854,6 @@ namespace lab_dotnet.Entities.Migrations
             modelBuilder.Entity("lab_dotnet.Entities.Models.Requester", b =>
                 {
                     b.Navigation("Requests");
-                });
-
-            modelBuilder.Entity("lab_dotnet.Entities.Models.JobTitle", b =>
-                {
-                    b.Navigation("AppUsers");
                 });
 #pragma warning restore 612, 618
         }

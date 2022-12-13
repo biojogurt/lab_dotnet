@@ -2,6 +2,7 @@ using AutoMapper;
 using lab_dotnet.Services.Abstract;
 using lab_dotnet.Services.Models;
 using lab_dotnet.WebAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace lab_dotnet.WebAPI.Controllers;
@@ -13,6 +14,7 @@ namespace lab_dotnet.WebAPI.Controllers;
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]")]
 [ApiController]
+[Authorize]
 public class AppUserController : ControllerBase
 {
     private readonly IAppUserService Service;

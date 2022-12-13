@@ -10,5 +10,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\lab_dotnet.Entities\lab_dotnet.Entities.csproj" />
+    <ProjectReference Include="..\lab_dotnet.Exceptions\lab_dotnet.Exceptions.csproj" />
   </ItemGroup>
 </Project>

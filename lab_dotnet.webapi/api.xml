@@ -9,6 +9,12 @@
             Application builder extensions
             </summary>
         </member>
+        <member name="M:lab_dotnet.WebAPI.AppConfiguration.ApplicationExtensions.AppExtensions.UseAuthorizationConfiguration(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Use authorization configuration
+            </summary>
+            <param name="app"></param>
+        </member>
         <member name="M:lab_dotnet.WebAPI.AppConfiguration.ApplicationExtensions.AppExtensions.UseSerilogConfiguration(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
             Use serilog configuration
@@ -25,6 +31,13 @@
             <summary>
             Services extensions
             </summary>
+        </member>
+        <member name="M:lab_dotnet.WebAPI.AppConfiguration.ServicesExtensions.ServicesExtensions.AddAuthorizationConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Add authorization configuration
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
         </member>
         <member name="M:lab_dotnet.WebAPI.AppConfiguration.ServicesExtensions.ServicesExtensions.AddDbContextConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
@@ -45,11 +58,12 @@
             </summary>
             <param name="builder"></param>
         </member>
-        <member name="M:lab_dotnet.WebAPI.AppConfiguration.ServicesExtensions.ServicesExtensions.AddSwaggerConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:lab_dotnet.WebAPI.AppConfiguration.ServicesExtensions.ServicesExtensions.AddSwaggerConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             Add swagger settings
             </summary>
             <param name="services"></param>
+            <param name="configuration"></param>
         </member>
         <member name="M:lab_dotnet.WebAPI.AppConfiguration.ServicesExtensions.ServicesExtensions.AddVersioningConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
@@ -95,6 +109,26 @@
         <member name="M:lab_dotnet.WebAPI.Controllers.AppUserController.UpdateAppUser(System.Guid,lab_dotnet.WebAPI.Models.UpdateAppUserRequest)">
             <summary>
             Update app user
+            </summary>
+        </member>
+        <member name="T:lab_dotnet.WebAPI.Controllers.AuthController">
+            <summary>
+            Auth endpoints
+            </summary>
+        </member>
+        <member name="M:lab_dotnet.WebAPI.Controllers.AuthController.#ctor(lab_dotnet.Services.Abstract.IAuthService,AutoMapper.IMapper)">
+            <summary>
+            Auth controller
+            </summary>
+        </member>
+        <member name="M:lab_dotnet.WebAPI.Controllers.AuthController.RegisterUser(lab_dotnet.WebAPI.Models.RegisterUserRequest)">
+            <summary>
+            Register app user
+            </summary>
+        </member>
+        <member name="M:lab_dotnet.WebAPI.Controllers.AuthController.LoginUser(lab_dotnet.WebAPI.Models.LoginUserRequest)">
+            <summary>
+            Login app user
             </summary>
         </member>
         <member name="T:lab_dotnet.WebAPI.Controllers.BorrowerController">
@@ -565,11 +599,6 @@
         <member name="M:lab_dotnet.WebAPI.Controllers.RequesterController.UpdateRequester(System.Guid,lab_dotnet.WebAPI.Models.UpdateRequesterRequest)">
             <summary>
             Update requester
-            </summary>
-        </member>
-        <member name="T:lab_dotnet.WebAPI.Program">
-            <summary>
-            Program entry
             </summary>
         </member>
     </members>

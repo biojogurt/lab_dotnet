@@ -76,7 +76,7 @@ public class CreditTypeService : ICreditTypeService
 
         if (creditType.Name != null)
         {
-            existingCreditType.Name = (string)creditType.Name;
+            existingCreditType.Name = creditType.Name;
         }
 
         existingCreditType = Repository.Save(existingCreditType);

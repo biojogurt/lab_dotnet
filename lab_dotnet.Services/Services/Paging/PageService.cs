@@ -6,7 +6,7 @@ using lab_dotnet.Services.Models;
 
 namespace lab_dotnet.Services.Implementation;
 
-public class PageService<T, U> : IPageService<T, U> where T : BaseEntity
+public class PageService<T, U> : IPageService<T, U> where T : IBaseEntity
 {
     private readonly IMapper mapper;
 
@@ -19,6 +19,9 @@ public class PageService<T, U> : IPageService<T, U> where T : BaseEntity
     {
         int totalCount = elems.Count();
         var chunk = elems.OrderBy(comparator).Skip(offset).Take(limit);
-        return new PageModel<U>(mapper.Map<IEnumerable<U>>(elems), totalCount);
+        return new PageModel<U>(
+            chunk.Select(x => mapper.Map<U>(x)),
+            totalCount
+        );
     }
 }

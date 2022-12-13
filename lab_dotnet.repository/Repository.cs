@@ -1,34 +1,36 @@
+using System.Linq.Expressions;
+using lab_dotnet.Entities;
 using lab_dotnet.Entities.Models;
+using lab_dotnet.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System.Linq.Expressions;
 
 namespace lab_dotnet.Repository;
 
-public class Repository<T> : IRepository<T> where T : BaseEntity
+public class Repository<T> : IRepository<T> where T : class, IBaseEntity
 {
-    private DbContext _context;
-    private ILogger<Repository<T>> logger;
+    private readonly Context context;
+    private readonly ILogger<Repository<T>> logger;
 
-    public Repository(DbContext context, ILogger<Repository<T>> logger)
+    public Repository(Context context, ILogger<Repository<T>> logger)
     {
-        _context = context;
+        this.context = context;
         this.logger = logger;
     }
 
     public IQueryable<T> GetAll()
     {
-        return _context.Set<T>();
+        return context.Set<T>();
     }
 
     public IQueryable<T> GetAll(Expression<Func<T, bool>> predicate)
     {
-        return _context.Set<T>().Where(predicate);
+        return context.Set<T>().Where(predicate);
     }
 
     public T? GetById(Guid id)
     {
-        return _context.Set<T>().FirstOrDefault(x => x.Id == id);
+        return context.Set<T>().FirstOrDefault(x => x.Id == id);
     }
 
     private T Insert(T obj)
@@ -36,8 +38,8 @@ public class Repository<T> : IRepository<T> where T : BaseEntity
         try
         {
             obj.Init();
-            var result = _context.Set<T>().Add(obj);
-            _context.SaveChanges();
+            var result = context.Set<T>().Add(obj);
+            context.SaveChanges();
             return result.Entity;
         }
         catch (Exception ex)
@@ -52,9 +54,9 @@ public class Repository<T> : IRepository<T> where T : BaseEntity
         try
         {
             obj.ModificationTime = DateTime.UtcNow;
-            var result = _context.Set<T>().Attach(obj);
-            _context.Entry(obj).State = EntityState.Modified;
-            _context.SaveChanges();
+            var result = context.Set<T>().Attach(obj);
+            context.Entry(obj).State = EntityState.Modified;
+            context.SaveChanges();
             return result.Entity;
         }
         catch (Exception ex)
@@ -66,13 +68,13 @@ public class Repository<T> : IRepository<T> where T : BaseEntity
 
     public T Save(T obj)
     {
-        if (obj.IsNew())
+        try
         {
-            return Insert(obj);
+            return obj.IsNew() ? Insert(obj) : Update(obj);
         }
-        else
+        catch (Exception ex)
         {
-            return Update(obj);
+            throw new RepositoryException(ex.ToString());
         }
     }
 
@@ -80,14 +82,14 @@ public class Repository<T> : IRepository<T> where T : BaseEntity
     {
         try
         {
-            _context.Set<T>().Attach(obj);
-            _context.Entry(obj).State = EntityState.Deleted;
-            _context.SaveChanges();
+            context.Set<T>().Attach(obj);
+            context.Entry(obj).State = EntityState.Deleted;
+            context.SaveChanges();
         }
         catch (Exception ex)
         {
             logger.LogError(ex.ToString());
-            throw;
+            throw new RepositoryException(ex.ToString());
         }
     }
 }

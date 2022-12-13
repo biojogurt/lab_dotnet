@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -7,6 +7,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\lab_dotnet.Entities\lab_dotnet.Entities.csproj" />
+    <ProjectReference Include="..\lab_dotnet.Exceptions\lab_dotnet.Exceptions.csproj" />
     <ProjectReference Include="..\lab_dotnet.Repository\lab_dotnet.Repository.csproj" />
   </ItemGroup>
   <ItemGroup>
